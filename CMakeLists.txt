@@ -13,6 +13,7 @@ set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
 
 include(KDEInstallDirs)
 include(KDECMakeSettings)
+include(ECMInstallIcons)
 include(KDECompilerSettings NO_POLICY_SCOPE)
 include(ECMDeprecationSettings)
 include(FeatureSummary)
@@ -30,6 +31,20 @@ ecm_set_disabled_deprecation_versions(QT 6.6 KF 6.0)
 qt_standard_project_setup(REQUIRES 6.6)
 
 add_subdirectory(src)
+
+# Named <size>-<group>-<name>.svg, which is what ecm_install_icons reads to
+# work out where each one belongs in the hicolor theme.
+ecm_install_icons(ICONS
+    icons/16-apps-signpost.svg
+    icons/22-apps-signpost.svg
+    icons/32-apps-signpost.svg
+    icons/48-apps-signpost.svg
+    icons/64-apps-signpost.svg
+    icons/128-apps-signpost.svg
+    icons/sc-apps-signpost.svg
+    DESTINATION ${KDE_INSTALL_ICONDIR}
+    THEME hicolor
+)
 
 enable_testing()
 add_subdirectory(tests)

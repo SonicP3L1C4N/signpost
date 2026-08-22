@@ -4,63 +4,61 @@
   "version": 1,
   "entries": [
     {
-      "id": "task-manager",
-      "windows": "Task Manager",
+      "id": "alt-tab",
+      "windows": "Alt+Tab",
       "aliases": [
-        "taskmgr",
-        "Ctrl+Shift+Esc",
-        "processes",
-        "end task",
-        "not responding"
+        "switch windows",
+        "app switcher",
+        "task switcher"
       ],
-      "kde": "System Monitor",
-      "category": "System",
-      "desktop": "org.kde.plasma-systemmonitor.desktop",
-      "summary": "The same job with more of it: processes, CPU, memory, disks and network, and a button to end anything that has stopped responding."
+      "kde": "Walk Through Windows",
+      "category": "Shortcuts",
+      "action": {
+        "component": "kwin",
+        "name": "Walk Through Windows"
+      },
+      "summary": "Works exactly as you expect. The look of it, and whether it covers one desktop or all of them, is in System Settings under Window Management."
     },
     {
-      "id": "file-explorer",
-      "windows": "File Explorer",
+      "id": "calculator",
+      "windows": "Calculator",
       "aliases": [
-        "explorer",
-        "My Computer",
-        "This PC",
-        "my documents",
-        "folders"
+        "calc"
       ],
-      "kde": "Dolphin",
-      "category": "Files",
-      "desktop": "org.kde.dolphin.desktop",
-      "summary": "Your file manager. The left column is Places rather than This PC, and it does tabs, a split view and a built-in terminal."
-    },
-    {
-      "id": "control-panel",
-      "windows": "Control Panel",
-      "aliases": [
-        "control",
-        "settings",
-        "options",
-        "preferences"
-      ],
-      "kde": "System Settings",
-      "category": "Settings",
-      "desktop": "systemsettings.desktop",
-      "summary": "One window for the lot — appearance, hardware, users, networking — with a search box at the top that is usually faster than the categories."
-    },
-    {
-      "id": "snipping-tool",
-      "windows": "Snipping Tool",
-      "aliases": [
-        "screenshot",
-        "print screen",
-        "snip",
-        "Win+Shift+S",
-        "screen capture"
-      ],
-      "kde": "Spectacle",
+      "kde": "KCalc",
       "category": "Apps",
-      "desktop": "org.kde.spectacle.desktop",
-      "summary": "Rectangle, window, whole screen, or a screen recording. The chord you already use works here too."
+      "desktop": "org.kde.kcalc.desktop",
+      "summary": "Simple, scientific and programmer modes, the same as you are used to."
+    },
+    {
+      "id": "character-map",
+      "windows": "Character Map",
+      "aliases": [
+        "charmap",
+        "special characters",
+        "accents",
+        "symbol"
+      ],
+      "kde": "KCharSelect",
+      "category": "Apps",
+      "desktop": "org.kde.kcharselect.desktop",
+      "summary": "Every character in the font, searchable by name."
+    },
+    {
+      "id": "clipboard-history",
+      "windows": "Clipboard history",
+      "aliases": [
+        "Win+V",
+        "clipboard",
+        "paste history"
+      ],
+      "kde": "Klipper",
+      "category": "Shortcuts",
+      "action": {
+        "component": "plasmashell",
+        "name": "show-on-mouse-pos"
+      },
+      "summary": "Everything you have copied, waiting in a list. It is on by default and lives in the system tray."
     },
     {
       "id": "terminal",
@@ -78,6 +76,156 @@
       "summary": "Tabs, split panes and profiles. You will meet it in instructions more often than on Windows, and it is less of a last resort here."
     },
     {
+      "id": "zip",
+      "windows": "Compressed folder",
+      "aliases": [
+        "zip",
+        "WinZip",
+        "WinRAR",
+        "7-zip",
+        "extract",
+        "unzip"
+      ],
+      "kde": "Ark",
+      "category": "Files",
+      "desktop": "org.kde.ark.desktop",
+      "summary": "Zip, tar, 7z and rar, from Dolphin's right-click menu. Nothing to buy and no nag screen after thirty days."
+    },
+    {
+      "id": "control-panel",
+      "windows": "Control Panel",
+      "aliases": [
+        "control",
+        "settings",
+        "options",
+        "preferences",
+        "Win+I"
+      ],
+      "kde": "System Settings",
+      "category": "Settings",
+      "desktop": "systemsettings.desktop",
+      "summary": "One window for the lot — appearance, hardware, users, networking — with a search box at the top that is usually faster than the categories."
+    },
+    {
+      "id": "device-manager",
+      "windows": "Device Manager",
+      "aliases": [
+        "devmgmt.msc",
+        "drivers",
+        "hardware",
+        "yellow triangle"
+      ],
+      "kde": "Info Centre",
+      "category": "System",
+      "desktop": "org.kde.kinfocenter.desktop",
+      "summary": "Reports what hardware you have and what it is doing. There is usually nothing to install: drivers arrive with the system rather than from the manufacturer's website."
+    },
+    {
+      "id": "disk-management",
+      "windows": "Disk Management",
+      "aliases": [
+        "diskmgmt.msc",
+        "partitions",
+        "format",
+        "usb stick",
+        "drive letters"
+      ],
+      "kde": "KDE Partition Manager",
+      "category": "System",
+      "desktop": "org.kde.partitionmanager.desktop",
+      "summary": "Partition and format drives. There are no drive letters here: everything appears as a folder, and removable drives show up in Dolphin's Places when you plug them in."
+    },
+    {
+      "id": "emoji",
+      "windows": "Emoji panel",
+      "aliases": [
+        "Win+.",
+        "emoji",
+        "smiley",
+        "symbols"
+      ],
+      "kde": "Emoji Selector",
+      "category": "Shortcuts",
+      "desktop": "org.kde.plasma.emojier.desktop",
+      "summary": "The same chord, the same idea: pick one and it goes to the clipboard."
+    },
+    {
+      "id": "event-viewer",
+      "windows": "Event Viewer",
+      "aliases": [
+        "eventvwr",
+        "logs",
+        "system log",
+        "errors"
+      ],
+      "kde": "KSystemLog",
+      "category": "System",
+      "desktop": "org.kde.ksystemlog.desktop",
+      "summary": "The system's own account of what happened. When someone helping you asks for a log, this is where it is — or journalctl in Konsole, which is the same thing as text."
+    },
+    {
+      "id": "file-explorer",
+      "windows": "File Explorer",
+      "aliases": [
+        "explorer",
+        "My Computer",
+        "This PC",
+        "my documents",
+        "folders",
+        "Win+E"
+      ],
+      "kde": "Dolphin",
+      "category": "Files",
+      "desktop": "org.kde.dolphin.desktop",
+      "summary": "Your file manager. The left column is Places rather than This PC, and it does tabs, a split view and a built-in terminal."
+    },
+    {
+      "id": "lock",
+      "windows": "Lock screen",
+      "aliases": [
+        "Win+L",
+        "lock",
+        "ctrl alt delete"
+      ],
+      "kde": "Lock Session",
+      "category": "Shortcuts",
+      "action": {
+        "component": "ksmserver",
+        "name": "Lock Session"
+      },
+      "summary": "Locks the session. Ctrl+Alt+Delete is not the way in here — it offers to log out or shut down instead."
+    },
+    {
+      "id": "office",
+      "windows": "Microsoft Office",
+      "aliases": [
+        "Word",
+        "Excel",
+        "PowerPoint",
+        "docx",
+        "xlsx"
+      ],
+      "kde": "LibreOffice",
+      "category": "Apps",
+      "desktop": "libreoffice-startcenter.desktop",
+      "summary": "Opens and saves .docx, .xlsx and .pptx. For a document someone else must edit in Office, check the layout before you send it. Office on the web still works in the browser."
+    },
+    {
+      "id": "store",
+      "windows": "Microsoft Store",
+      "aliases": [
+        "add or remove programs",
+        "install software",
+        "appwiz.cpl",
+        "uninstall",
+        "Win+I"
+      ],
+      "kde": "Discover",
+      "category": "System",
+      "desktop": "org.kde.discover.desktop",
+      "summary": "Where software is installed and removed. Almost everything comes from here rather than from a downloaded installer, and it is free of charge and free of adverts."
+    },
+    {
       "id": "notepad",
       "windows": "Notepad",
       "aliases": [
@@ -90,6 +238,19 @@
       "category": "Apps",
       "desktop": "org.kde.kate.desktop",
       "summary": "A text editor that grew up: syntax highlighting, a file tree, split views. KWrite is the same editor with the extras taken away."
+    },
+    {
+      "id": "onedrive",
+      "windows": "OneDrive",
+      "aliases": [
+        "cloud",
+        "sync",
+        "Google Drive",
+        "Dropbox"
+      ],
+      "kde": "No client is shipped",
+      "category": "Files",
+      "summary": "Nothing syncs OneDrive out of the box. Dolphin can open a remote folder over the network, and rclone handles OneDrive and Google Drive properly, including keeping a folder in step."
     },
     {
       "id": "paint",
@@ -106,17 +267,6 @@
       "summary": "The simple one, for a crop, an arrow and some text. Krita is the serious one, if what you actually wanted was painting."
     },
     {
-      "id": "calculator",
-      "windows": "Calculator",
-      "aliases": [
-        "calc"
-      ],
-      "kde": "KCalc",
-      "category": "Apps",
-      "desktop": "org.kde.kcalc.desktop",
-      "summary": "Simple, scientific and programmer modes, the same as you are used to."
-    },
-    {
       "id": "photos",
       "windows": "Photos",
       "aliases": [
@@ -130,6 +280,49 @@
       "summary": "Browse a folder of pictures, rotate and crop them, and pass one to a real editor when you need to."
     },
     {
+      "id": "photoshop",
+      "windows": "Photoshop",
+      "aliases": [
+        "image editing",
+        "GIMP",
+        "paint.net",
+        "photo editor"
+      ],
+      "kde": "Krita",
+      "category": "Apps",
+      "desktop": "org.kde.krita.desktop",
+      "summary": "Krita is the painting one and is genuinely first rate. For photo retouching, GIMP is the closer match."
+    },
+    {
+      "id": "printers",
+      "windows": "Printers & scanners",
+      "aliases": [
+        "add printer",
+        "devices and printers",
+        "scan"
+      ],
+      "kde": "Printers",
+      "category": "Settings",
+      "desktop": "kcm_printer_manager.desktop",
+      "summary": "Most printers are found on the network and set themselves up without a driver download. Scanners have their own application, Skanpage."
+    },
+    {
+      "id": "project",
+      "windows": "Project",
+      "aliases": [
+        "Win+P",
+        "second screen",
+        "extend display",
+        "duplicate",
+        "projector"
+      ],
+      "kde": "Display Configuration",
+      "category": "Settings",
+      "desktop": "kcm_kscreen.desktop",
+      "shortcutDesktop": "org.kde.kscreen.desktop",
+      "summary": "Arrange, mirror or turn off screens, and set which one is primary. The chord is the one you already press."
+    },
+    {
       "id": "recycle-bin",
       "windows": "Recycle Bin",
       "aliases": [
@@ -141,47 +334,6 @@
       "kde": "Trash",
       "category": "Files",
       "summary": "Same idea, different door: it is in Dolphin's Places list, or type trash:/ into the address bar. Emptying it is a right-click on the entry."
-    },
-    {
-      "id": "store",
-      "windows": "Microsoft Store",
-      "aliases": [
-        "add or remove programs",
-        "install software",
-        "appwiz.cpl",
-        "uninstall"
-      ],
-      "kde": "Discover",
-      "category": "System",
-      "desktop": "org.kde.discover.desktop",
-      "summary": "Where software is installed and removed. Almost everything comes from here rather than from a downloaded installer, and it is free of charge and free of adverts."
-    },
-    {
-      "id": "windows-update",
-      "windows": "Windows Update",
-      "aliases": [
-        "updates",
-        "patch tuesday",
-        "upgrade"
-      ],
-      "kde": "Discover — Updates",
-      "category": "System",
-      "desktop": "org.kde.discover.desktop",
-      "summary": "Updates for the whole machine at once, applications and system together. Most of them apply without a restart, and none of them choose their own moment to reboot you."
-    },
-    {
-      "id": "device-manager",
-      "windows": "Device Manager",
-      "aliases": [
-        "devmgmt.msc",
-        "drivers",
-        "hardware",
-        "yellow triangle"
-      ],
-      "kde": "Info Centre",
-      "category": "System",
-      "desktop": "org.kde.kinfocenter.desktop",
-      "summary": "Reports what hardware you have and what it is doing. There is usually nothing to install: drivers arrive with the system rather than from the manufacturer's website."
     },
     {
       "id": "registry",
@@ -202,28 +354,14 @@
         "Win+R",
         "run dialog",
         "launch",
-        "search"
+        "search",
+        "Win+S",
+        "Win+Q"
       ],
       "kde": "KRunner",
       "category": "System",
       "shortcutDesktop": "org.kde.krunner.desktop",
       "summary": "Type to launch, but also to calculate, convert units, open a folder, or search your files. Worth learning early."
-    },
-    {
-      "id": "clipboard-history",
-      "windows": "Clipboard history",
-      "aliases": [
-        "Win+V",
-        "clipboard",
-        "paste history"
-      ],
-      "kde": "Klipper",
-      "category": "Shortcuts",
-      "action": {
-        "component": "plasmashell",
-        "name": "show-on-mouse-pos"
-      },
-      "summary": "Everything you have copied, waiting in a list. It is on by default and lives in the system tray."
     },
     {
       "id": "show-desktop",
@@ -242,20 +380,49 @@
       "summary": "Clears the windows out of the way and puts them back."
     },
     {
-      "id": "lock",
-      "windows": "Lock screen",
+      "id": "snipping-tool",
+      "windows": "Snipping Tool",
       "aliases": [
-        "Win+L",
-        "lock",
-        "ctrl alt delete"
+        "screenshot",
+        "print screen",
+        "snip",
+        "Win+Shift+S",
+        "screen capture"
       ],
-      "kde": "Lock Session",
-      "category": "Shortcuts",
-      "action": {
-        "component": "ksmserver",
-        "name": "Lock Session"
-      },
-      "summary": "Locks the session. Ctrl+Alt+Delete is not the way in here — it offers to log out or shut down instead."
+      "kde": "Spectacle",
+      "category": "Apps",
+      "desktop": "org.kde.spectacle.desktop",
+      "summary": "Rectangle, window, whole screen, or a screen recording. The chord you already use works here too."
+    },
+    {
+      "id": "startup-apps",
+      "windows": "Startup apps",
+      "aliases": [
+        "msconfig",
+        "autostart",
+        "startup folder",
+        "run at login"
+      ],
+      "kde": "Autostart",
+      "category": "Settings",
+      "desktop": "kcm_autostart.desktop",
+      "summary": "What starts when you log in — applications, scripts and login shell files, all in one list you can add to."
+    },
+    {
+      "id": "task-manager",
+      "windows": "Task Manager",
+      "aliases": [
+        "taskmgr",
+        "Ctrl+Shift+Esc",
+        "processes",
+        "end task",
+        "not responding",
+        "Win+X"
+      ],
+      "kde": "System Monitor",
+      "category": "System",
+      "desktop": "org.kde.plasma-systemmonitor.desktop",
+      "summary": "The same job with more of it: processes, CPU, memory, disks and network, and a button to end anything that has stopped responding."
     },
     {
       "id": "task-view",
@@ -275,123 +442,36 @@
       "summary": "Every window laid out at once, with your virtual desktops along the top and a search box. Virtual desktops are the same idea as on Windows and rather better supported."
     },
     {
-      "id": "alt-tab",
-      "windows": "Alt+Tab",
+      "id": "user-accounts",
+      "windows": "User Accounts",
       "aliases": [
-        "switch windows",
-        "app switcher",
-        "task switcher"
+        "netplwiz",
+        "add user",
+        "change password",
+        "family"
       ],
-      "kde": "Walk Through Windows",
+      "kde": "Users",
+      "category": "Settings",
+      "desktop": "kcm_users.desktop",
+      "summary": "Add a user, change a password or a picture, and decide who may administer the machine."
+    },
+    {
+      "id": "windows-key",
+      "windows": "Windows key",
+      "aliases": [
+        "Win",
+        "Start menu",
+        "Start button",
+        "Meta",
+        "super key"
+      ],
+      "kde": "Meta — the Application Launcher",
+      "summary": "The same key opens the same kind of menu. It is called Meta here, and the menu it opens is the Application Launcher: type to find an application, or browse the categories.",
       "category": "Shortcuts",
       "action": {
-        "component": "kwin",
-        "name": "Walk Through Windows"
-      },
-      "summary": "Works exactly as you expect. The look of it, and whether it covers one desktop or all of them, is in System Settings under Window Management."
-    },
-    {
-      "id": "emoji",
-      "windows": "Emoji panel",
-      "aliases": [
-        "Win+.",
-        "emoji",
-        "smiley",
-        "symbols"
-      ],
-      "kde": "Emoji Selector",
-      "category": "Shortcuts",
-      "desktop": "org.kde.plasma.emojier.desktop",
-      "summary": "The same chord, the same idea: pick one and it goes to the clipboard."
-    },
-    {
-      "id": "project",
-      "windows": "Project",
-      "aliases": [
-        "Win+P",
-        "second screen",
-        "extend display",
-        "duplicate",
-        "projector"
-      ],
-      "kde": "Display Configuration",
-      "category": "Settings",
-      "desktop": "kcm_kscreen.desktop",
-      "shortcutDesktop": "org.kde.kscreen.desktop",
-      "summary": "Arrange, mirror or turn off screens, and set which one is primary. The chord is the one you already press."
-    },
-    {
-      "id": "character-map",
-      "windows": "Character Map",
-      "aliases": [
-        "charmap",
-        "special characters",
-        "accents",
-        "symbol"
-      ],
-      "kde": "KCharSelect",
-      "category": "Apps",
-      "desktop": "org.kde.kcharselect.desktop",
-      "summary": "Every character in the font, searchable by name."
-    },
-    {
-      "id": "zip",
-      "windows": "Compressed folder",
-      "aliases": [
-        "zip",
-        "WinZip",
-        "WinRAR",
-        "7-zip",
-        "extract",
-        "unzip"
-      ],
-      "kde": "Ark",
-      "category": "Files",
-      "desktop": "org.kde.ark.desktop",
-      "summary": "Zip, tar, 7z and rar, from Dolphin's right-click menu. Nothing to buy and no nag screen after thirty days."
-    },
-    {
-      "id": "defender",
-      "windows": "Windows Security",
-      "aliases": [
-        "Defender",
-        "antivirus",
-        "firewall",
-        "virus scan"
-      ],
-      "kde": "Firewall",
-      "category": "System",
-      "desktop": "kcm_firewall.desktop",
-      "summary": "No resident antivirus is shipped, and none is expected: software comes from signed repositories rather than from download sites. The firewall is here, and off by default on a home machine behind a router."
-    },
-    {
-      "id": "office",
-      "windows": "Microsoft Office",
-      "aliases": [
-        "Word",
-        "Excel",
-        "PowerPoint",
-        "docx",
-        "xlsx"
-      ],
-      "kde": "LibreOffice",
-      "category": "Apps",
-      "desktop": "libreoffice-startcenter.desktop",
-      "summary": "Opens and saves .docx, .xlsx and .pptx. For a document someone else must edit in Office, check the layout before you send it. Office on the web still works in the browser."
-    },
-    {
-      "id": "photoshop",
-      "windows": "Photoshop",
-      "aliases": [
-        "image editing",
-        "GIMP",
-        "paint.net",
-        "photo editor"
-      ],
-      "kde": "Krita",
-      "category": "Apps",
-      "desktop": "org.kde.krita.desktop",
-      "summary": "Krita is the painting one and is genuinely first rate. For photo retouching, GIMP is the closer match."
+        "component": "plasmashell",
+        "name": "activate application launcher"
+      }
     },
     {
       "id": "media-player",
@@ -409,87 +489,31 @@
       "summary": "Haruna plays video, Elisa plays music. Both handle the formats Windows made you hunt for codecs to open."
     },
     {
-      "id": "startup-apps",
-      "windows": "Startup apps",
+      "id": "defender",
+      "windows": "Windows Security",
       "aliases": [
-        "msconfig",
-        "autostart",
-        "startup folder",
-        "run at login"
+        "Defender",
+        "antivirus",
+        "firewall",
+        "virus scan"
       ],
-      "kde": "Autostart",
-      "category": "Settings",
-      "desktop": "kcm_autostart.desktop",
-      "summary": "What starts when you log in — applications, scripts and login shell files, all in one list you can add to."
-    },
-    {
-      "id": "event-viewer",
-      "windows": "Event Viewer",
-      "aliases": [
-        "eventvwr",
-        "logs",
-        "system log",
-        "errors"
-      ],
-      "kde": "KSystemLog",
+      "kde": "Firewall",
       "category": "System",
-      "desktop": "org.kde.ksystemlog.desktop",
-      "summary": "The system's own account of what happened. When someone helping you asks for a log, this is where it is — or journalctl in Konsole, which is the same thing as text."
+      "desktop": "kcm_firewall.desktop",
+      "summary": "No resident antivirus is shipped, and none is expected: software comes from signed repositories rather than from download sites. The firewall is here, and off by default on a home machine behind a router."
     },
     {
-      "id": "disk-management",
-      "windows": "Disk Management",
+      "id": "windows-update",
+      "windows": "Windows Update",
       "aliases": [
-        "diskmgmt.msc",
-        "partitions",
-        "format",
-        "usb stick",
-        "drive letters"
+        "updates",
+        "patch tuesday",
+        "upgrade"
       ],
-      "kde": "KDE Partition Manager",
+      "kde": "Discover — Updates",
       "category": "System",
-      "desktop": "org.kde.partitionmanager.desktop",
-      "summary": "Partition and format drives. There are no drive letters here: everything appears as a folder, and removable drives show up in Dolphin's Places when you plug them in."
-    },
-    {
-      "id": "user-accounts",
-      "windows": "User Accounts",
-      "aliases": [
-        "netplwiz",
-        "add user",
-        "change password",
-        "family"
-      ],
-      "kde": "Users",
-      "category": "Settings",
-      "desktop": "kcm_users.desktop",
-      "summary": "Add a user, change a password or a picture, and decide who may administer the machine."
-    },
-    {
-      "id": "printers",
-      "windows": "Printers & scanners",
-      "aliases": [
-        "add printer",
-        "devices and printers",
-        "scan"
-      ],
-      "kde": "Printers",
-      "category": "Settings",
-      "desktop": "kcm_printer_manager.desktop",
-      "summary": "Most printers are found on the network and set themselves up without a driver download. Scanners have their own application, Skanpage."
-    },
-    {
-      "id": "onedrive",
-      "windows": "OneDrive",
-      "aliases": [
-        "cloud",
-        "sync",
-        "Google Drive",
-        "Dropbox"
-      ],
-      "kde": "No client is shipped",
-      "category": "Files",
-      "summary": "Nothing syncs OneDrive out of the box. Dolphin can open a remote folder over the network, and rclone handles OneDrive and Google Drive properly, including keeping a folder in step."
+      "desktop": "org.kde.discover.desktop",
+      "summary": "Updates for the whole machine at once, applications and system together. Most of them apply without a restart, and none of them choose their own moment to reboot you."
     }
   ]
 }

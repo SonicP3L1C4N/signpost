@@ -28,6 +28,12 @@ qt_add_resources(signpost "phrasebook"
     FILES ${CMAKE_SOURCE_DIR}/data/entries.json
 )
 
+qt_add_resources(signpost "appicon"
+    PREFIX "/"
+    BASE ${CMAKE_SOURCE_DIR}/icons
+    FILES ${CMAKE_SOURCE_DIR}/icons/sc-apps-signpost.svg
+)
+
 target_compile_definitions(signpost PRIVATE SIGNPOST_VERSION="${PROJECT_VERSION}")
 
 target_link_libraries(signpost PRIVATE

@@ -21,7 +21,13 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
 
     KLocalizedString::setApplicationDomain(QByteArrayLiteral("signpost"));
-    QApplication::setWindowIcon(QIcon::fromTheme(QStringLiteral("documentation")));
+    // The installed icon when there is one; the copy compiled in otherwise,
+    // so running out of the build directory still looks like the application.
+    QIcon icon = QIcon::fromTheme(QStringLiteral("signpost"));
+    if (icon.isNull()) {
+        icon = QIcon(QStringLiteral(":/sc-apps-signpost.svg"));
+    }
+    QApplication::setWindowIcon(icon);
     // Claimed only once the .desktop file is installed: without it the portal
     // rejects the id and Qt says so on every start.
     const QString desktopId = QStringLiteral("io.github.sonicp3l1c4n.signpost");

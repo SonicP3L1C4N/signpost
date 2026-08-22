@@ -72,6 +72,23 @@ private Q_SLOTS:
         QVERIFY(phrasebook.count() > 20);
     }
 
+    // The README tells people to type these. A dataset that has quietly
+    // stopped answering one of them is a broken promise, not a missing entry.
+    void thePromisedExamplesAllAnswer()
+    {
+        const QStringList promised = {
+            QStringLiteral("Task Manager"),
+            QStringLiteral("Control Panel"),
+            QStringLiteral("Win+E"),
+            QStringLiteral("Windows key"),
+        };
+        SearchModel phrasebook;
+        for (const QString &term : promised) {
+            phrasebook.setSearch(term);
+            QVERIFY2(phrasebook.count() > 0, qPrintable(term));
+        }
+    }
+
     void searchingNarrowsTheList()
     {
         SearchModel phrasebook;

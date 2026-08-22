@@ -6,6 +6,8 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
 
 # Signpost
 
+<img src="icons/sc-apps-signpost.svg" width="96" align="right" alt="">
+
 **What things are called on KDE, when you have come from Windows.**
 
 Type the word you already know — `Task Manager`, `Control Panel`, `Win+E` — and
@@ -40,7 +42,7 @@ says so, and offers Discover instead of pretending.
 
 ## Status
 
-Early, but it runs: search, 34 entries, live shortcuts, and the two buttons.
+Early, but it runs: search, 35 entries, live shortcuts, and the two buttons.
 The dataset is the part that needs the most work — see below.
 
 ![The full list with nothing typed, reading as a glossary](docs/glossary.png)

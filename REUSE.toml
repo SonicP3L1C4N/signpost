@@ -3,6 +3,14 @@ SPDX-PackageName = "signpost"
 SPDX-PackageSupplier = "Gary Bissett <gary.bissett@gmail.com>"
 SPDX-PackageDownloadLocation = "https://github.com/SonicP3L1C4N/signpost"
 
+# The application icon: original artwork, in Breeze's palette, and licensed
+# with the rest of the application rather than separately.
+[[annotations]]
+path = ["icons/**", "docs/**"]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2026 Gary Bissett <gary.bissett@gmail.com>"
+SPDX-License-Identifier = "GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL"
+
 # The licence texts themselves carry no headers, by REUSE's own convention.
 [[annotations]]
 path = "LICENSES/**"
