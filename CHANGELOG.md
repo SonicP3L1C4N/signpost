@@ -14,9 +14,15 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
 - **AppStream metadata**, so the application can appear in Discover and other
   software centres, with screenshots, a release history and a description
   written for someone who has just switched. Validated by the test suite.
-- A **Flatpak manifest**, and an honest note about why a distribution package
-  suits this application better: it answers questions about the host, and a
-  sandbox is the wrong side of that question.
+- A **Flatpak manifest**, built and run rather than merely written. It needs
+  the host's data directories on `XDG_DATA_DIRS` and carries its own XDG menu
+  definition, without which KSycoca indexes nothing and every answer claims its
+  application is missing. `--check` reports 63 of 72 applications resolved in
+  the sandbox against 68 on the host; the difference is snap-packaged
+  applications, which no sandbox permission reaches.
+- The application no longer calls itself `org.kde.signpost`. `KAboutData` was
+  overwriting the desktop file name set before it, so the window manager and
+  the portal both had the wrong id.
 - The metadata and the desktop entry are both validated on every test run.
 
 - **A KRunner plugin.** Type the Windows word into KRunner and the KDE name is

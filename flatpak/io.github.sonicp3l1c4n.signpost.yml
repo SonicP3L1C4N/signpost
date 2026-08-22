@@ -51,7 +51,31 @@ modules:
       # No KRunner plugin in a sandboxed build: it could be compiled, but
       # nothing outside the sandbox could ever load it.
       - -DCMAKE_DISABLE_FIND_PACKAGE_KF6Runner=ON
+    # KService does not read the application directories directly; it reads
+    # KSycoca, which is built from an XDG menu definition. The sandbox has no
+    # such file and the host's is not exposed, so the database came out empty
+    # and every answer claimed its application was missing. This ships the
+    # smallest menu that means "index everything you can see", under both the
+    # plain name and the prefixed one a Plasma session asks for.
+    post-install:
+      - install -Dm644 applications.menu /app/etc/xdg/menus/applications.menu
+      - install -Dm644 applications.menu /app/etc/xdg/menus/plasma-applications.menu
+
     sources:
       - type: git
         url: https://github.com/SonicP3L1C4N/signpost.git
         tag: v0.1.0
+
+      - type: inline
+        dest-filename: applications.menu
+        contents: |
+          <!DOCTYPE Menu PUBLIC "-//freedesktop//DTD Menu 1.0//EN"
+           "http://www.freedesktop.org/standards/menu-spec/menu-1.0.dtd">
+          <Menu>
+            <Name>Applications</Name>
+            <DefaultAppDirs/>
+            <DefaultDirectoryDirs/>
+            <Include>
+              <All/>
+            </Include>
+          </Menu>

@@ -110,11 +110,27 @@ leaves the KRunner plugin out entirely, because nothing outside a sandbox can
 load a plugin from inside one. Starting a host application needs
 `--talk-name=org.freedesktop.Flatpak`, which is a broad permission.
 
-A distribution package is the better home for this. The Flatpak is for people
-whose distribution has not packaged it, and the manifest has not been built
-here — `flatpak-builder` and a 2 GB KDE SDK are not installed on the machine
-this was written on, and claiming otherwise would be exactly the kind of
-untested confidence this application exists to avoid.
+It has been built and run. Getting there took three fixes that no amount of
+reading would have produced:
+
+- **`XDG_DATA_DIRS`**. `--filesystem=host-os` mounts the host's `/usr` and
+  nothing looks in it, so the sandbox saw the runtime's fourteen desktop files
+  instead of the host's two hundred and seventy-seven.
+- **A menu definition.** `KService` does not read those directories; it reads
+  KSycoca, which is built from an XDG menu file. The sandbox has none and the
+  host's is not exposed, so the database came out empty — every answer claiming
+  its application was missing, with total confidence.
+- **The application's own id**, which was `org.kde.signpost` everywhere because
+  `KAboutData` overwrites what `QGuiApplication` was told.
+
+With those, `signpost --check` inside the sandbox reports **63 of 72**
+applications resolved, against **68 of 72** on the host. The gap is
+snap-packaged applications — Firefox and Thunderbird here — which live outside
+everything a sandbox can be granted without dismantling it.
+
+Which is the honest summary: the Flatpak works, and it is still the second-best
+way to install this. A distribution package sees the whole machine, ships the
+KRunner plugin, and needs no permissions at all.
 
 ## Version and About
 
