@@ -1,0 +1,49 @@
+# SPDX-FileCopyrightText: 2026 Gary Bissett <gary.bissett@gmail.com>
+# SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
+#
+# Signpost is an awkward fit for a sandbox, and the manifest may as well say so.
+# The application's whole job is answering questions about the machine it is
+# running on: which applications are installed, what the shortcuts are bound to,
+# and then opening the thing it named. All three of those are host questions.
+#
+# So this build reads the host's application and shortcut configuration
+# read-only, and the KRunner plugin is left out entirely, because a plugin
+# cannot be loaded into KRunner from inside a sandbox. A distribution package is
+# the better home for this application; the Flatpak is for people whose
+# distribution has not packaged it.
+
+id: io.github.sonicp3l1c4n.signpost
+runtime: org.kde.Platform
+runtime-version: '6.10'
+sdk: org.kde.Sdk
+command: signpost
+
+finish-args:
+  - --share=ipc
+  - --socket=wayland
+  - --socket=fallback-x11
+  - --device=dri
+
+  # The questions it answers are about the host. Without these, every entry
+  # would report its application as missing and every shortcut as unbound --
+  # confidently, and wrongly, which is the one thing a phrasebook must not do.
+  - --filesystem=host-os:ro
+  - --filesystem=xdg-config/kglobalshortcutsrc:ro
+
+  # Opening what it names. A sandboxed process cannot start a host application
+  # any other way; there is no portal for "run this .desktop file". This is a
+  # broad permission and it is the reason a distribution package is preferable.
+  - --talk-name=org.freedesktop.Flatpak
+
+modules:
+  - name: signpost
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+      # No KRunner plugin in a sandboxed build: it could be compiled, but
+      # nothing outside the sandbox could ever load it.
+      - -DCMAKE_DISABLE_FIND_PACKAGE_KF6Runner=ON
+    sources:
+      - type: git
+        url: https://github.com/SonicP3L1C4N/signpost.git
+        tag: v0.1.0

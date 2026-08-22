@@ -93,6 +93,29 @@ QT_PLUGIN_PATH="$HOME/.local/lib/x86_64-linux-gnu/qt6/plugins" krunner --replace
 
 — or install the plugin system-wide, where it needs no telling.
 
+## Packaging
+
+`io.github.sonicp3l1c4n.signpost.metainfo.xml` is installed alongside the menu
+entry, so the application appears in Discover and in any other software centre —
+which is where the people this is written for will look, since a Windows switcher
+in their first week is not going to run `cmake`. It is validated by the test
+suite rather than at packaging time.
+
+`flatpak/` holds a manifest, with a caveat worth stating plainly: **Signpost is
+an awkward fit for a sandbox.** Its whole job is answering questions about the
+machine it is running on — what is installed, what the shortcuts are bound to —
+and then opening what it named. All three are host questions. The manifest
+therefore reads the host's application and shortcut configuration read-only, and
+leaves the KRunner plugin out entirely, because nothing outside a sandbox can
+load a plugin from inside one. Starting a host application needs
+`--talk-name=org.freedesktop.Flatpak`, which is a broad permission.
+
+A distribution package is the better home for this. The Flatpak is for people
+whose distribution has not packaged it, and the manifest has not been built
+here — `flatpak-builder` and a 2 GB KDE SDK are not installed on the machine
+this was written on, and claiming otherwise would be exactly the kind of
+untested confidence this application exists to avoid.
+
 ## Version and About
 
 The header carries the running version, and the menu beside it opens **About

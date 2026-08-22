@@ -46,3 +46,21 @@ if(TARGET KF6::Runner)
     )
     krunner_configure_test(runnertest signpostrunner)
 endif()
+
+# The metadata is what a software centre shows and what a distribution packager
+# reads; broken metadata fails silently in both, months later.
+find_program(APPSTREAMCLI appstreamcli)
+if(APPSTREAMCLI)
+    add_test(NAME metainfotest
+        COMMAND ${APPSTREAMCLI} validate --pedantic
+                ${CMAKE_SOURCE_DIR}/src/io.github.sonicp3l1c4n.signpost.metainfo.xml
+    )
+endif()
+
+find_program(DESKTOP_FILE_VALIDATE desktop-file-validate)
+if(DESKTOP_FILE_VALIDATE)
+    add_test(NAME desktopfiletest
+        COMMAND ${DESKTOP_FILE_VALIDATE}
+                ${CMAKE_SOURCE_DIR}/src/io.github.sonicp3l1c4n.signpost.desktop
+    )
+endif()

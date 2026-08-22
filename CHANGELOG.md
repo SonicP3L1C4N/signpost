@@ -8,6 +8,14 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
 
 ## Unreleased
 
+- **AppStream metadata**, so the application can appear in Discover and other
+  software centres, with screenshots, a release history and a description
+  written for someone who has just switched. Validated by the test suite.
+- A **Flatpak manifest**, and an honest note about why a distribution package
+  suits this application better: it answers questions about the host, and a
+  sandbox is the wrong side of that question.
+- The metadata and the desktop entry are both validated on every test run.
+
 - **A KRunner plugin.** Type the Windows word into KRunner and the KDE name is
   in the list, with the Windows term and the live shortcut underneath it. Enter
   starts the application; where there is nothing to start, it opens Signpost on

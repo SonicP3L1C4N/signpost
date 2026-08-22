@@ -72,6 +72,11 @@ install(TARGETS signpost ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 install(PROGRAMS io.github.sonicp3l1c4n.signpost.desktop
         DESTINATION ${KDE_INSTALL_APPDIR})
 
+# Without this the application cannot appear in Discover, or in any other
+# software centre, which is where the people this is written for will look.
+install(FILES io.github.sonicp3l1c4n.signpost.metainfo.xml
+        DESTINATION ${KDE_INSTALL_METAINFODIR})
+
 # A launch shortcut, shipped the way every KDE application ships one: a copy of
 # the menu entry under kglobalaccel/ carrying X-KDE-Shortcuts. Which is the
 # same file this application reads to tell you what Win+E became -- it now

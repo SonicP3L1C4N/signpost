@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+SPDX-FileCopyrightText: 2026 Gary Bissett <gary.bissett@gmail.com>
+SPDX-License-Identifier: CC0-1.0
+-->
+<component type="desktop-application">
+  <id>io.github.sonicp3l1c4n.signpost</id>
+
+  <name>Signpost</name>
+  <summary>Find what a Windows name is called on KDE</summary>
+
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL</project_license>
+
+  <developer id="io.github.sonicp3l1c4n">
+    <name>Gary Bissett</name>
+  </developer>
+
+  <description>
+    <p>
+      Signpost is for the week after the switch. The install went fine, the files
+      came across, the welcome tour has been dismissed — and now every third thing
+      you want to do begins with not knowing what it is called.
+    </p>
+    <p>
+      Type the word you already know — Task Manager, Control Panel, Win+E — and
+      Signpost tells you what it is here, what the shortcut is on this machine,
+      and opens it for you.
+    </p>
+    <p>It answers from your own system rather than from a wiki page:</p>
+    <ul>
+      <li>Shortcuts are read from the running configuration, so if you have
+      rebound one, that is what you are told.</li>
+      <li>An answer whose application is not installed says so, and offers to
+      install it, rather than pretending.</li>
+      <li>Where there is genuinely no equivalent — the registry, product keys,
+      OneDrive — it says that plainly instead of inventing one.</li>
+    </ul>
+    <p>
+      Answers also appear in KRunner, so pressing Meta and typing the Windows
+      word is enough.
+    </p>
+  </description>
+
+  <launchable type="desktop-id">io.github.sonicp3l1c4n.signpost.desktop</launchable>
+
+  <url type="homepage">https://github.com/SonicP3L1C4N/signpost</url>
+  <url type="bugtracker">https://github.com/SonicP3L1C4N/signpost/issues</url>
+  <url type="vcs-browser">https://github.com/SonicP3L1C4N/signpost</url>
+
+  <screenshots>
+    <screenshot type="default">
+      <caption>An answer: the Windows name, the KDE one, and the shortcut this machine uses</caption>
+      <image>https://raw.githubusercontent.com/SonicP3L1C4N/signpost/main/docs/searched.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>The whole phrasebook, filtered by category</caption>
+      <image>https://raw.githubusercontent.com/SonicP3L1C4N/signpost/main/docs/glossary.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>An answer that is not installed offers to install it</caption>
+      <image>https://raw.githubusercontent.com/SonicP3L1C4N/signpost/main/docs/not-installed.png</image>
+    </screenshot>
+  </screenshots>
+
+  <categories>
+    <category>Utility</category>
+    <category>Documentation</category>
+  </categories>
+
+  <keywords>
+    <keyword>windows</keyword>
+    <keyword>switch</keyword>
+    <keyword>migrate</keyword>
+    <keyword>equivalent</keyword>
+    <keyword>phrasebook</keyword>
+  </keywords>
+
+  <provides>
+    <binary>signpost</binary>
+  </provides>
+
+  <content_rating type="oars-1.1"/>
+
+  <releases>
+    <release version="0.1.0" date="2026-08-22">
+      <description>
+        <p>
+          First release: 101 entries, scored search, shortcuts read from the
+          running system, and a KRunner plugin.
+        </p>
+      </description>
+      <url type="details">https://github.com/SonicP3L1C4N/signpost/releases/tag/v0.1.0</url>
+    </release>
+  </releases>
+</component>
