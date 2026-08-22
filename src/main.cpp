@@ -1,6 +1,10 @@
 // SPDX-FileCopyrightText: 2026 Gary Bissett <gary.bissett@gmail.com>
 // SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
+#include "entrymodel.h"
+#include "environment.h"
+#include "searchmodel.h"
+
 #include <KAboutData>
 #include <KLocalizedContext>
 #include <KLocalizedString>
@@ -9,6 +13,7 @@
 #include <QCommandLineParser>
 #include <QIcon>
 #include <QQmlApplicationEngine>
+#include <QTextStream>
 #include <QStandardPaths>
 #include <QQmlContext>
 #include <QQuickStyle>
@@ -70,8 +75,39 @@ int main(int argc, char *argv[])
     about.setupCommandLine(&parser);
     parser.addPositionalArgument(QStringLiteral("term"),
                                  i18n("What the thing is called on Windows"));
+    // Packaging turns "does it work" into a question you cannot answer by
+    // looking: a sandboxed copy can open its window and still be blind to the
+    // machine it is describing. This says so in one line, with no display.
+    const QCommandLineOption check(QStringLiteral("check"),
+                                   i18n("Report what this copy can see, and exit"));
+    parser.addOption(check);
     parser.process(app);
     about.processCommandLine(&parser);
+
+    if (parser.isSet(check)) {
+        SearchModel phrasebook;
+        int resolved = 0;
+        int launchable = 0;
+        for (int row = 0; row < phrasebook.count(); ++row) {
+            const QModelIndex index = phrasebook.index(row, 0);
+            if (index.data(EntryModel::DesktopIdRole).toString().isEmpty()) {
+                continue;
+            }
+            ++launchable;
+            if (index.data(EntryModel::InstalledRole).toBool()) {
+                ++resolved;
+            }
+        }
+        Environment environment;
+        QTextStream out(stdout);
+        out << environment.report(phrasebook.count()) << "\n"
+            << QStringLiteral("%1%2 of %3 installed")
+                   .arg(QStringLiteral("Applications"), -13)
+                   .arg(resolved)
+                   .arg(launchable)
+            << "\n";
+        return 0;
+    }
 
     QQmlApplicationEngine engine;
     engine.rootContext()->setContextObject(new KLocalizedContext(&engine));

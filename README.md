@@ -133,7 +133,14 @@ needs and exactly what the person reporting it cannot know to mention.
 ```
 signpost                  # the whole phrasebook, alphabetically
 signpost "task manager"   # straight to the answer
+signpost --check          # what this copy can see, and exit
 ```
+
+`--check` exists because packaging turns "does it work" into a question you
+cannot answer by looking. A sandboxed or badly installed copy opens its window
+quite happily and is blind to the machine it is describing; this reports the
+versions, the entry count and how many answers resolved to an installed
+application, with no display needed.
 
 Installed, it also answers to **Meta+/** — shipped as a `kglobalaccel` entry,
 which is the same mechanism Signpost reads to tell you what Win+E became, so it

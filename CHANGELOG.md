@@ -8,6 +8,9 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
 
 ## Unreleased
 
+- `signpost --check` reports what a copy can actually see — versions, entry
+  count, and how many answers resolved to an installed application — without
+  needing a screen. Packaging makes that question hard to answer by looking.
 - **AppStream metadata**, so the application can appear in Discover and other
   software centres, with screenshots, a release history and a description
   written for someone who has just switched. Validated by the test suite.
