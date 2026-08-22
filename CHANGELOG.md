@@ -16,6 +16,11 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
 - **Meta+/** launches Signpost, shipped as a `kglobalaccel` entry — the same
   mechanism Signpost reads to answer questions about shortcuts, so it now
   answers for itself and reports the binding if you change it.
+- The runner loads and translates on the main thread. A runner is moved to its
+  own thread after construction, and both KSycoca and KLocalizedString parent
+  objects to the application from whichever thread touches them first — so the
+  phrasebook is read and its subtexts translated up front, and matching does
+  nothing but look things up.
 - Ranking moved into `src/ranking.{h,cpp}`: the window and the runner both ask
   the same question and neither should own the answer.
 

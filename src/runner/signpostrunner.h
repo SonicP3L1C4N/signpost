@@ -33,4 +33,15 @@ public:
 
 private:
     EntryModel m_phrasebook;
+
+    /**
+     * The subtexts, translated once, in the thread that may do it.
+     *
+     * The first call into KLocalizedString installs an event filter on the
+     * application, and a runner matches on its own thread -- so translating
+     * lazily means doing that from the wrong one. They never change, so
+     * building them with the phrasebook costs nothing and says nothing at
+     * match time but a list lookup.
+     */
+    QStringList m_subtexts;
 };
