@@ -20,6 +20,12 @@ int main(int argc, char *argv[])
     // afterwards is a name nobody asked for. Claimed only when the .desktop
     // file is actually installed -- an id the portal cannot resolve is a
     // warning on every start.
+    //
+    // It has to be told to KAboutData as well, further down. KAboutData
+    // carries a desktop file name of its own, defaulting to org.kde.<name>,
+    // and setApplicationData writes it over whatever was set here -- which is
+    // why this application spent a while calling itself org.kde.signpost to
+    // the portal and to the window manager.
     const QString desktopId = QStringLiteral("io.github.sonicp3l1c4n.signpost");
     if (!QStandardPaths::locate(QStandardPaths::GenericDataLocation,
                                 QStringLiteral("applications/") + desktopId
@@ -51,6 +57,7 @@ int main(int argc, char *argv[])
     about.addAuthor(i18n("Gary Bissett"),
                     i18n("Author"),
                     QStringLiteral("gary.bissett@gmail.com"));
+    about.setDesktopFileName(desktopId);
     about.setHomepage(QStringLiteral("https://github.com/SonicP3L1C4N/signpost"));
     about.setBugAddress(QByteArrayLiteral("https://github.com/SonicP3L1C4N/signpost/issues"));
     // Gives --version and --help for free, which is the lesson the last
