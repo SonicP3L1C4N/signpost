@@ -1,0 +1,14 @@
+# SPDX-FileCopyrightText: 2026 Gary Bissett <gary.bissett@gmail.com>
+# SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
+
+[Desktop Entry]
+Type=Application
+Name=Signpost
+GenericName=Windows to KDE Phrasebook
+Comment=What things are called on KDE, when you have come from Windows
+Exec=signpost
+Icon=documentation
+Terminal=false
+Categories=Utility;Documentation;Qt;KDE;
+Keywords=windows;switch;migrate;equivalent;phrasebook;help;
+StartupWMClass=signpost
