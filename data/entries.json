@@ -386,6 +386,24 @@
       "summary": "The system's own account of what happened. When someone helping you asks for a log, this is where it is — or journalctl in Konsole, which is the same thing as text."
     },
     {
+      "id": "favourites",
+      "windows": "Favorites",
+      "aliases": [
+        "bookmarks",
+        "favourites",
+        "import bookmarks",
+        "browser history"
+      ],
+      "kde": "Bookmarks — imported",
+      "category": "Internet",
+      "desktop": [
+        "firefox.desktop",
+        "firefox_firefox.desktop",
+        "org.mozilla.firefox.desktop"
+      ],
+      "summary": "Bring them across on the first run: Firefox offers to import from Edge and Chrome, including history and saved logins. Signing into a browser account does it too, and keeps them in step with the machine you have not switched yet."
+    },
+    {
       "id": "file-explorer",
       "windows": "File Explorer",
       "aliases": [
@@ -430,6 +448,20 @@
       "summary": "Sizes and anti-aliasing here; to install a font, open the file and press Install, or drop it in ~/.local/share/fonts."
     },
     {
+      "id": "ftp",
+      "windows": "FTP site",
+      "aliases": [
+        "ftp",
+        "sftp",
+        "webdav",
+        "upload to server"
+      ],
+      "kde": "Dolphin's address bar",
+      "category": "Internet",
+      "desktop": "org.kde.dolphin.desktop",
+      "summary": "Type sftp://user@host, ftp:// or webdavs:// into Dolphin and the remote machine becomes a folder — draggable, editable in place, and available to every application through the same address."
+    },
+    {
       "id": "games",
       "windows": "Games",
       "aliases": [
@@ -456,6 +488,20 @@
       "category": "Settings",
       "desktop": "kcm_baloofile.desktop",
       "summary": "What gets indexed for searching, and which folders to leave out. Searching is then done from KRunner or Dolphin."
+    },
+    {
+      "id": "internet-options",
+      "windows": "Internet Options",
+      "aliases": [
+        "inetcpl.cpl",
+        "proxy",
+        "proxy settings",
+        "pac file"
+      ],
+      "kde": "Proxy",
+      "category": "Internet",
+      "desktop": "kcm_proxy.desktop",
+      "summary": "System-wide proxy settings, including a PAC file. There is no equivalent of the rest of that dialogue: security zones and ActiveX were Internet Explorer's alone and went with it."
     },
     {
       "id": "ipconfig",
@@ -523,7 +569,7 @@
         "Windows Mail"
       ],
       "kde": "Thunderbird",
-      "category": "Apps",
+      "category": "Internet",
       "desktop": [
         "thunderbird.desktop",
         "thunderbird_thunderbird.desktop",
@@ -610,6 +656,19 @@
       "summary": "Where software is installed and removed. Almost everything comes from here rather than from a downloaded installer, and it is free of charge and free of adverts."
     },
     {
+      "id": "hotspot",
+      "windows": "Mobile hotspot",
+      "aliases": [
+        "share connection",
+        "wifi hotspot",
+        "tethering"
+      ],
+      "kde": "Networks — Hotspot",
+      "category": "Internet",
+      "desktop": "kcm_networkmanagement.desktop",
+      "summary": "Share a wired or mobile connection over Wi-Fi from the Networks page, if the adapter supports it. Tethering from a phone works the other way with no setup at all."
+    },
+    {
       "id": "mouse-settings",
       "windows": "Mouse settings",
       "aliases": [
@@ -635,6 +694,22 @@
       "category": "Files",
       "desktop": "org.kde.dolphin.desktop",
       "summary": "Documents, Downloads, Pictures and the rest live in your home folder, the same way, and Dolphin's Places lists them."
+    },
+    {
+      "id": "streaming",
+      "windows": "Netflix and Spotify",
+      "aliases": [
+        "netflix",
+        "spotify",
+        "streaming",
+        "drm",
+        "prime video",
+        "youtube"
+      ],
+      "kde": "The browser, and Discover",
+      "category": "Internet",
+      "icon": "internet-web-browser",
+      "summary": "Streaming sites work in Firefox and Chrome, with the DRM they need switched on the first time a site asks. Spotify has a Linux client in Discover, and so do most of the others."
     },
     {
       "id": "network-settings",
@@ -945,6 +1020,20 @@
       "summary": "Hold Shift as it boots for the menu, then a recovery entry. Because updates are atomic and the old kernel stays installed, you can usually just pick the previous one."
     },
     {
+      "id": "browser-passwords",
+      "windows": "Saved passwords",
+      "aliases": [
+        "autofill",
+        "browser passwords",
+        "password manager",
+        "edge passwords"
+      ],
+      "kde": "The browser's own, and KWallet",
+      "category": "Internet",
+      "icon": "dialog-password",
+      "summary": "Passwords saved in Edge or Chrome import with the rest of the profile. The desktop's own store is KWallet, which holds Wi-Fi keys and application logins and unlocks with your login password."
+    },
+    {
       "id": "screensaver",
       "windows": "Screen saver",
       "aliases": [
@@ -956,6 +1045,20 @@
       "category": "Settings",
       "desktop": "kcm_screenlocker.desktop",
       "summary": "When the screen locks and whether it asks for a password on wake."
+    },
+    {
+      "id": "web-search",
+      "windows": "Search the web from the taskbar",
+      "aliases": [
+        "bing",
+        "web search",
+        "search box",
+        "address bar search"
+      ],
+      "kde": "Web Shortcuts",
+      "category": "Internet",
+      "desktop": "kcm_webshortcuts.desktop",
+      "summary": "Type gg: cats into KRunner or Dolphin's address bar and it goes to Google; wp: for Wikipedia, and dozens more you can edit here. Nothing is sent anywhere until you press Enter."
     },
     {
       "id": "background-services",
@@ -1208,6 +1311,20 @@
       "summary": "Add a user, change a password or a picture, and decide who may administer the machine."
     },
     {
+      "id": "torrent",
+      "windows": "uTorrent",
+      "aliases": [
+        "torrent",
+        "bittorrent",
+        "qbittorrent",
+        "magnet link"
+      ],
+      "kde": "KTorrent",
+      "category": "Internet",
+      "desktop": "org.kde.ktorrent.desktop",
+      "summary": "KTorrent is the KDE one and qBittorrent the other common choice. Both are in Discover, and neither of them carries advertising or a bundled toolbar."
+    },
+    {
       "id": "virtual-desktops",
       "windows": "Virtual desktops",
       "aliases": [
@@ -1220,6 +1337,36 @@
       "category": "Settings",
       "desktop": "kcm_kwin_virtualdesktops.desktop",
       "summary": "Add as many as you like, name them, and put them in a grid. They are a first-class part of the desktop here rather than an afterthought."
+    },
+    {
+      "id": "vpn",
+      "windows": "VPN",
+      "aliases": [
+        "add a vpn",
+        "openvpn",
+        "wireguard",
+        "work vpn"
+      ],
+      "kde": "Networks — VPN",
+      "category": "Internet",
+      "desktop": "kcm_networkmanagement.desktop",
+      "summary": "Add a connection here and it appears in the tray with everything else. OpenVPN, WireGuard and Cisco protocols each need their plugin installed once, which Discover will find by name."
+    },
+    {
+      "id": "messaging",
+      "windows": "WhatsApp and Teams chat",
+      "aliases": [
+        "discord",
+        "telegram",
+        "signal",
+        "messenger",
+        "slack",
+        "chat"
+      ],
+      "kde": "Discover, or the browser",
+      "category": "Internet",
+      "desktop": "org.kde.discover.desktop",
+      "summary": "Discord, Telegram, Signal, Slack and Element all have proper Linux builds in Discover. WhatsApp has no official desktop client for Linux — the web version works, and there are third-party wrappers."
     },
     {
       "id": "scanner",

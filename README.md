@@ -42,7 +42,7 @@ says so, and offers Discover instead of pretending.
 
 ## Status
 
-Early, but it runs: 91 entries, scored search, category filters, live
+Early, but it runs: 101 entries, scored search, category filters, live
 shortcuts, application icons and the two buttons. The dataset is still the part
 that needs the most work — see below.
 
