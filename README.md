@@ -89,6 +89,21 @@ ctest --test-dir build --output-on-failure
 ./build/bin/signpost
 ```
 
+To install it for yourself, with no root and nothing to undo later than
+`build/install_manifest.txt`:
+
+```
+cmake -B build -G Ninja -DCMAKE_INSTALL_PREFIX="$HOME/.local"
+cmake --build build
+cmake --install build
+kbuildsycoca6            # so the launcher and KRunner notice it
+```
+
+The binary lands in `~/.local/bin`, the menu entry and icons under
+`~/.local/share`. Installed is not the same as built: the application claims its
+desktop id only when the `.desktop` file is really there, so the portal has
+something to resolve.
+
 ## The dataset
 
 `data/entries.json`, compiled into the binary. One entry looks like this:

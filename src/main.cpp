@@ -5,17 +5,29 @@
 #include <KLocalizedContext>
 #include <KLocalizedString>
 
-#include <KService>
-
 #include <QApplication>
 #include <QCommandLineParser>
 #include <QIcon>
 #include <QQmlApplicationEngine>
+#include <QStandardPaths>
 #include <QQmlContext>
 #include <QQuickStyle>
 
 int main(int argc, char *argv[])
 {
+    // Before the QApplication, not after: the platform registers the
+    // application with the portal while it is being constructed, so a name set
+    // afterwards is a name nobody asked for. Claimed only when the .desktop
+    // file is actually installed -- an id the portal cannot resolve is a
+    // warning on every start.
+    const QString desktopId = QStringLiteral("io.github.sonicp3l1c4n.signpost");
+    if (!QStandardPaths::locate(QStandardPaths::GenericDataLocation,
+                                QStringLiteral("applications/") + desktopId
+                                    + QStringLiteral(".desktop"))
+             .isEmpty()) {
+        QGuiApplication::setDesktopFileName(desktopId);
+    }
+
     // QApplication rather than QGuiApplication: KIO's launcher job puts up
     // widget dialogs when a .desktop file wants a terminal or asks a question.
     QApplication app(argc, argv);
@@ -28,12 +40,6 @@ int main(int argc, char *argv[])
         icon = QIcon(QStringLiteral(":/sc-apps-signpost.svg"));
     }
     QApplication::setWindowIcon(icon);
-    // Claimed only once the .desktop file is installed: without it the portal
-    // rejects the id and Qt says so on every start.
-    const QString desktopId = QStringLiteral("io.github.sonicp3l1c4n.signpost");
-    if (KService::serviceByDesktopName(desktopId)) {
-        QGuiApplication::setDesktopFileName(desktopId);
-    }
     QQuickStyle::setStyle(QStringLiteral("org.kde.desktop"));
 
     KAboutData about(QStringLiteral("signpost"),
