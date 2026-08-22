@@ -12,6 +12,8 @@ Type the word you already know — `Task Manager`, `Control Panel`, `Win+E` — 
 Signpost tells you what it is here, what the shortcut is on *this* machine, and
 opens it for you.
 
+![Signpost with "task manager" typed in: Task Manager, System Monitor, the shortcut Meta+Esc, and an Open it button](docs/searched.png)
+
 It is for the week after the switch. The install went fine, the files came
 across, the welcome tour has been dismissed, and now every third thing you want
 to do begins with not knowing what it is called.
@@ -34,10 +36,24 @@ Overview to something else, that is what it shows you.
 The same goes for the answer itself: an entry whose application is not installed
 says so, and offers Discover instead of pretending.
 
+![Searching for "paint": KolourPaint is not installed, so the card offers a Get it button, while Krita below it is installed](docs/not-installed.png)
+
 ## Status
 
-Early. The first cut is the search, the dataset and the two buttons. The
-dataset is 34 entries and is the part that needs the most work — see below.
+Early, but it runs: search, 34 entries, live shortcuts, and the two buttons.
+The dataset is the part that needs the most work — see below.
+
+![The full list with nothing typed, reading as a glossary](docs/glossary.png)
+
+## Using it
+
+```
+signpost                  # the whole phrasebook, alphabetically
+signpost "task manager"   # straight to the answer
+```
+
+The second form is the one worth putting on a keyboard shortcut, or typing
+into KRunner, while you are still learning your way around.
 
 ## Building
 

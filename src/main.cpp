@@ -5,7 +5,10 @@
 #include <KLocalizedContext>
 #include <KLocalizedString>
 
+#include <KService>
+
 #include <QApplication>
+#include <QCommandLineParser>
 #include <QIcon>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
@@ -19,6 +22,12 @@ int main(int argc, char *argv[])
 
     KLocalizedString::setApplicationDomain(QByteArrayLiteral("signpost"));
     QApplication::setWindowIcon(QIcon::fromTheme(QStringLiteral("documentation")));
+    // Claimed only once the .desktop file is installed: without it the portal
+    // rejects the id and Qt says so on every start.
+    const QString desktopId = QStringLiteral("io.github.sonicp3l1c4n.signpost");
+    if (KService::serviceByDesktopName(desktopId)) {
+        QGuiApplication::setDesktopFileName(desktopId);
+    }
     QQuickStyle::setStyle(QStringLiteral("org.kde.desktop"));
 
     KAboutData about(QStringLiteral("signpost"),
@@ -36,8 +45,20 @@ int main(int argc, char *argv[])
     // project learned the hard way.
     KAboutData::setApplicationData(about);
 
+    // `signpost "task manager"` opens with the answer already on screen, which
+    // is what makes it worth putting on a shortcut or typing into KRunner.
+    QCommandLineParser parser;
+    about.setupCommandLine(&parser);
+    parser.addPositionalArgument(QStringLiteral("term"),
+                                 i18n("What the thing is called on Windows"));
+    parser.process(app);
+    about.processCommandLine(&parser);
+
     QQmlApplicationEngine engine;
     engine.rootContext()->setContextObject(new KLocalizedContext(&engine));
+    engine.setInitialProperties({
+        {QStringLiteral("initialSearch"), parser.positionalArguments().value(0)},
+    });
     engine.loadFromModule("org.kde.signpost", "Main");
     if (engine.rootObjects().isEmpty()) {
         return 1;

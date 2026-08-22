@@ -10,8 +10,8 @@ struct Entry;
 /**
  * What the shortcut actually is on *this* machine.
  *
- * Two files answer that, in two different formats. `kglobalaccel/*.desktop`
- * under the data dirs carries what an application shipped as its launch
+ * Two files answer that, in two different formats. The `kglobalaccel`
+ * desktop files under the data dirs carry what an application shipped as its launch
  * shortcut, comma-separated; `kglobalshortcutsrc` carries what the user has
  * since changed it to, as "current,default,description" where current may hold
  * several tab-separated alternatives. The user's file wins where it says
@@ -34,9 +34,9 @@ QString fromGlobalShortcutsValue(const QString &value);
 /**
  * "Display,Meta+P" -> "Meta+P".
  *
- * The list mixes chords with media keys ("Calculator", "Search", "Display"),
- * and a chord is the useful answer to "what do I press", so a chord wins when
- * the list has one.
+ * The list mixes chords with media keys ("Calculator", "Search", "Display").
+ * Only a chord answers "what do I press", so a media key on its own counts as
+ * no shortcut at all.
  */
 QString fromDesktopShortcutsValue(const QString &value);
 }

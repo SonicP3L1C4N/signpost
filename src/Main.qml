@@ -13,6 +13,9 @@ Kirigami.ApplicationWindow {
 
     title: i18n("Signpost")
 
+    /** Seeded from the command line, so `signpost "task manager"` lands on it. */
+    property string initialSearch: ""
+
     minimumWidth: Kirigami.Units.gridUnit * 22
     minimumHeight: Kirigami.Units.gridUnit * 20
     width: Kirigami.Units.gridUnit * 42
@@ -25,13 +28,24 @@ Kirigami.ApplicationWindow {
     pageStack.initialPage: Kirigami.ScrollablePage {
         id: page
 
-        // The search field is the whole interface, so it takes the title's
-        // place rather than sitting under it.
-        titleDelegate: Kirigami.SearchField {
-            Layout.fillWidth: true
-            Layout.rightMargin: Kirigami.Units.largeSpacing
-            placeholderText: i18n("What is it called on Windows?")
-            onTextChanged: phrasebook.search = text
+        // No global toolbar: the window title already says Signpost, and the
+        // search field is the whole interface rather than a decoration on a
+        // heading.
+        globalToolBarStyle: Kirigami.ApplicationHeaderStyle.None
+
+        header: QQC2.Control {
+            width: page.width
+            leftPadding: Kirigami.Units.largeSpacing
+            rightPadding: Kirigami.Units.largeSpacing
+            topPadding: Kirigami.Units.smallSpacing
+            bottomPadding: Kirigami.Units.smallSpacing
+
+            contentItem: Kirigami.SearchField {
+                text: root.initialSearch
+                placeholderText: i18n("What is it called on Windows?")
+                onTextChanged: phrasebook.search = text
+                focus: true
+            }
         }
 
         ListView {

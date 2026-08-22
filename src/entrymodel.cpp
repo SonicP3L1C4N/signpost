@@ -77,8 +77,10 @@ bool EntryModel::load(const QString &path)
         m_shortcuts.append(Shortcuts::forEntry(entry));
         // An entry with nothing to launch counts as present: the answer is
         // "it is in Dolphin" or "there is no such thing here", not an install.
-        m_installed.append(entry.desktopId.isEmpty()
-                           || !KService::serviceByStorageId(entry.desktopId).isNull());
+        const KService::Ptr service = entry.desktopId.isEmpty()
+            ? KService::Ptr()
+            : KService::serviceByStorageId(entry.desktopId);
+        m_installed.append(entry.desktopId.isEmpty() || bool(service));
     }
     endResetModel();
 

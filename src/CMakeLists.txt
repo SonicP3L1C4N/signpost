@@ -1,36 +1,16 @@
 # SPDX-FileCopyrightText: 2026 Gary Bissett <gary.bissett@gmail.com>
 # SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
-# The phrasebook itself: everything but main(), so the tests can link it.
-add_library(signpost_lib STATIC
+# One target rather than a library plus a shell over it: the QML types are
+# registered by the target that owns the QML module, so splitting them out
+# leaves QML unable to see them. The tests compile the sources they need.
+add_executable(signpost
+    main.cpp
     entrymodel.cpp
     searchmodel.cpp
     shortcuts.cpp
     launcher.cpp
 )
-
-target_link_libraries(signpost_lib PUBLIC
-    Qt6::Core
-    Qt6::Gui
-    Qt6::Qml
-    KF6::ConfigCore
-    KF6::CoreAddons
-    KF6::I18n
-    KF6::Service
-    KF6::KIOGui
-)
-
-target_include_directories(signpost_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
-
-# The dataset is compiled in: it is small, it is the program's whole subject,
-# and an installed copy that cannot find its data file is no use to anyone.
-qt_add_resources(signpost_lib "phrasebook"
-    PREFIX "/"
-    BASE ${CMAKE_SOURCE_DIR}/data
-    FILES ${CMAKE_SOURCE_DIR}/data/entries.json
-)
-
-add_executable(signpost main.cpp)
 
 qt_add_qml_module(signpost
     URI org.kde.signpost
@@ -40,15 +20,29 @@ qt_add_qml_module(signpost
         EntryCard.qml
 )
 
+# The dataset is compiled in: it is small, it is the program's whole subject,
+# and an installed copy that cannot find its data file is no use to anyone.
+qt_add_resources(signpost "phrasebook"
+    PREFIX "/"
+    BASE ${CMAKE_SOURCE_DIR}/data
+    FILES ${CMAKE_SOURCE_DIR}/data/entries.json
+)
+
 target_compile_definitions(signpost PRIVATE SIGNPOST_VERSION="${PROJECT_VERSION}")
 
 target_link_libraries(signpost PRIVATE
-    signpost_lib
+    Qt6::Core
+    Qt6::Gui
+    Qt6::Qml
     Qt6::Quick
     Qt6::QuickControls2
     Qt6::Widgets
+    KF6::ConfigCore
+    KF6::CoreAddons
     KF6::I18n
+    KF6::KIOGui
     KF6::Kirigami
+    KF6::Service
 )
 
 install(TARGETS signpost ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})

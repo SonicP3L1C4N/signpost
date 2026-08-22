@@ -50,10 +50,12 @@ private Q_SLOTS:
                  QStringLiteral("Alt+Space"));
     }
 
-    void aMediaKeyIsBetterThanNothing()
+    // KCalc ships only the Calculator media key. A chip reading "Calculator"
+    // answers a question nobody asked, so it counts as no shortcut.
+    void aMediaKeyOnItsOwnIsNotAnAnswer()
     {
         QCOMPARE(Shortcuts::fromDesktopShortcutsValue(QStringLiteral("Calculator")),
-                 QStringLiteral("Calculator"));
+                 QString());
         QCOMPARE(Shortcuts::fromDesktopShortcutsValue(QString()), QString());
     }
 };

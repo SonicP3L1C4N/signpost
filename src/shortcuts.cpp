@@ -40,7 +40,10 @@ QString Shortcuts::fromDesktopShortcutsValue(const QString &value)
             return candidate.trimmed();
         }
     }
-    return candidates.isEmpty() ? QString() : candidates.first().trimmed();
+    // Only a media key is left -- "Calculator", "Search", "Tools". Those are
+    // real bindings, but a chip reading "Calculator" answers a question nobody
+    // asked; "what do I press" wants a chord or nothing.
+    return {};
 }
 
 QString Shortcuts::forLaunch(const QString &desktopId)

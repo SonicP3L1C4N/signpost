@@ -3,12 +3,29 @@
 
 include(ECMAddTests)
 
-ecm_add_test(searchtest.cpp
-    TEST_NAME searchtest
-    LINK_LIBRARIES signpost_lib Qt6::Test
+# The phrasebook without the window: everything the tests actually exercise.
+set(SIGNPOST_SOURCES
+    ${CMAKE_SOURCE_DIR}/src/entrymodel.cpp
+    ${CMAKE_SOURCE_DIR}/src/searchmodel.cpp
+    ${CMAKE_SOURCE_DIR}/src/shortcuts.cpp
 )
 
-ecm_add_test(shortcutstest.cpp
-    TEST_NAME shortcutstest
-    LINK_LIBRARIES signpost_lib Qt6::Test
+ecm_add_test(searchtest.cpp ${SIGNPOST_SOURCES}
+    TEST_NAME searchtest
+    LINK_LIBRARIES Qt6::Test Qt6::Gui Qt6::Qml KF6::ConfigCore KF6::CoreAddons
+                   KF6::I18n KF6::Service
 )
+target_include_directories(searchtest PRIVATE ${CMAKE_SOURCE_DIR}/src)
+
+# The shipped dataset is the thing under test, so the test carries it too.
+qt_add_resources(searchtest "phrasebook"
+    PREFIX "/"
+    BASE ${CMAKE_SOURCE_DIR}/data
+    FILES ${CMAKE_SOURCE_DIR}/data/entries.json
+)
+
+ecm_add_test(shortcutstest.cpp ${CMAKE_SOURCE_DIR}/src/shortcuts.cpp
+    TEST_NAME shortcutstest
+    LINK_LIBRARIES Qt6::Test Qt6::Gui KF6::ConfigCore
+)
+target_include_directories(shortcutstest PRIVATE ${CMAKE_SOURCE_DIR}/src)
