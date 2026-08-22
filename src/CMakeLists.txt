@@ -34,7 +34,7 @@ qt_add_resources(signpost "phrasebook"
 qt_add_resources(signpost "appicon"
     PREFIX "/"
     BASE ${CMAKE_SOURCE_DIR}/icons
-    FILES ${CMAKE_SOURCE_DIR}/icons/sc-apps-signpost.svg
+    FILES ${CMAKE_SOURCE_DIR}/icons/sc-apps-io.github.sonicp3l1c4n.signpost.svg
 )
 
 # Interface artwork rather than an icon theme's business, so it is carried

@@ -35,9 +35,9 @@ int main(int argc, char *argv[])
     KLocalizedString::setApplicationDomain(QByteArrayLiteral("signpost"));
     // The installed icon when there is one; the copy compiled in otherwise,
     // so running out of the build directory still looks like the application.
-    QIcon icon = QIcon::fromTheme(QStringLiteral("signpost"));
+    QIcon icon = QIcon::fromTheme(desktopId);
     if (icon.isNull()) {
-        icon = QIcon(QStringLiteral(":/sc-apps-signpost.svg"));
+        icon = QIcon(QStringLiteral(":/sc-apps-io.github.sonicp3l1c4n.signpost.svg"));
     }
     QApplication::setWindowIcon(icon);
     QQuickStyle::setStyle(QStringLiteral("org.kde.desktop"));

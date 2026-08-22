@@ -47,13 +47,13 @@ endif()
 # Named <size>-<group>-<name>.svg, which is what ecm_install_icons reads to
 # work out where each one belongs in the hicolor theme.
 ecm_install_icons(ICONS
-    icons/16-apps-signpost.svg
-    icons/22-apps-signpost.svg
-    icons/32-apps-signpost.svg
-    icons/48-apps-signpost.svg
-    icons/64-apps-signpost.svg
-    icons/128-apps-signpost.svg
-    icons/sc-apps-signpost.svg
+    icons/16-apps-io.github.sonicp3l1c4n.signpost.svg
+    icons/22-apps-io.github.sonicp3l1c4n.signpost.svg
+    icons/32-apps-io.github.sonicp3l1c4n.signpost.svg
+    icons/48-apps-io.github.sonicp3l1c4n.signpost.svg
+    icons/64-apps-io.github.sonicp3l1c4n.signpost.svg
+    icons/128-apps-io.github.sonicp3l1c4n.signpost.svg
+    icons/sc-apps-io.github.sonicp3l1c4n.signpost.svg
     DESTINATION ${KDE_INSTALL_ICONDIR}
     THEME hicolor
 )

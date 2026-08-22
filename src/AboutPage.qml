@@ -32,8 +32,8 @@ Kirigami.ScrollablePage {
             spacing: Kirigami.Units.largeSpacing
 
             Kirigami.Icon {
-                source: "signpost"
-                fallback: "qrc:/sc-apps-signpost.svg"
+                source: "io.github.sonicp3l1c4n.signpost"
+                fallback: "qrc:/sc-apps-io.github.sonicp3l1c4n.signpost.svg"
                 implicitWidth: Kirigami.Units.iconSizes.huge
                 implicitHeight: Kirigami.Units.iconSizes.huge
                 Layout.alignment: Qt.AlignTop
