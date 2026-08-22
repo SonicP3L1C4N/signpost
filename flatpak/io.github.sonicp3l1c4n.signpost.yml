@@ -30,6 +30,14 @@ finish-args:
   - --filesystem=host-os:ro
   - --filesystem=xdg-config/kglobalshortcutsrc:ro
 
+  # host-os mounts the host's /usr but nothing looks in it: inside the sandbox
+  # KService sees the runtime's fourteen desktop files rather than the host's
+  # two hundred and seventy-seven, and reports almost everything as missing.
+  # Adding the host's data directories to the search path is what makes the
+  # answers true. Kept after the sandbox's own, so the application still finds
+  # its own icons and resources first.
+  - --env=XDG_DATA_DIRS=/app/share:/usr/share:/usr/share/runtime/share:/run/host/usr/local/share:/run/host/usr/share:/run/host/user-share:/run/host/share
+
   # Opening what it names. A sandboxed process cannot start a host application
   # any other way; there is no portal for "run this .desktop file". This is a
   # broad permission and it is the reason a distribution package is preferable.
