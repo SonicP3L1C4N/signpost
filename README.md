@@ -42,11 +42,26 @@ says so, and offers Discover instead of pretending.
 
 ## Status
 
-Early, but it runs: search, 91 entries, live shortcuts, application icons, and
-the two buttons. The dataset is still the part that needs the most work — see
-below.
+Early, but it runs: 91 entries, scored search, category filters, live
+shortcuts, application icons and the two buttons. The dataset is still the part
+that needs the most work — see below.
 
 ![The full list with nothing typed, reading as a glossary](docs/glossary.png)
+
+## About the icons
+
+Every card reads left to right: a grey mark for the thing you came in knowing,
+then the real icon of the application that answers it. Half of "where is it" is
+knowing what to look for once you are in the launcher, and a name on its own
+does not tell you that.
+
+The grey marks are **ours**, drawn for this project and deliberately generic —
+one per category, not one per product. Microsoft's icons are Microsoft's:
+shipping them would be a copyright and trademark problem for anyone
+redistributing this, and would rule the application out of KDE. So the rule for
+contributors is short: **never add Microsoft artwork, logos or screenshots**, no
+matter how much better the card would look. If a card needs a stronger mark than
+the category gives it, draw one.
 
 ## Using it
 

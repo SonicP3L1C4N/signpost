@@ -14,6 +14,26 @@
 
 namespace
 {
+/**
+ * The mark on the Windows side of a card.
+ *
+ * Our own artwork rather than Microsoft's: their icons are theirs, and a
+ * phrasebook that shipped them could not be distributed by anyone. These are
+ * generic, and grey on purpose -- the card reads left to right as the thing
+ * you knew giving way to the thing in front of you.
+ */
+QString originIcon(const QString &category)
+{
+    static const QStringList known = {
+        QStringLiteral("Apps"),      QStringLiteral("Files"),
+        QStringLiteral("Internet"),  QStringLiteral("Settings"),
+        QStringLiteral("Shortcuts"), QStringLiteral("System"),
+    };
+    const QString name = known.contains(category) ? category.toLower()
+                                                  : QStringLiteral("apps");
+    return QStringLiteral("qrc:/origin/origin-%1.svg").arg(name);
+}
+
 Entry readEntry(const QJsonObject &object)
 {
     Entry entry;
@@ -144,6 +164,8 @@ QVariant EntryModel::data(const QModelIndex &index, int role) const
         return m_resolved.at(index.row());
     case IconRole:
         return m_icons.at(index.row());
+    case OriginIconRole:
+        return originIcon(entry.category);
     case InstalledRole:
         return m_installed.at(index.row());
     default:
@@ -162,6 +184,7 @@ QHash<int, QByteArray> EntryModel::roleNames() const
         {ShortcutRole, QByteArrayLiteral("shortcut")},
         {DesktopIdRole, QByteArrayLiteral("desktopId")},
         {IconRole, QByteArrayLiteral("iconName")},
+        {OriginIconRole, QByteArrayLiteral("originIcon")},
         {InstalledRole, QByteArrayLiteral("installed")},
     };
 }

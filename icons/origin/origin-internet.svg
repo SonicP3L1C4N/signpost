@@ -1,0 +1,7 @@
+<!-- SPDX-FileCopyrightText: 2026 Gary Bissett <gary.bissett@gmail.com> -->
+<!-- SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL -->
+<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22">
+  <circle cx="11" cy="11" r="7.5" fill="none" stroke="#7c8287" stroke-width="1.6"/>
+  <path d="M3.5 11h15M11 3.5c2.2 2.3 3.3 4.9 3.3 7.5S13.2 16.2 11 18.5c-2.2-2.3-3.3-4.9-3.3-7.5S8.8 5.8 11 3.5z"
+        fill="none" stroke="#7c8287" stroke-width="1.4"/>
+</svg>

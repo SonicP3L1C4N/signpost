@@ -27,6 +27,7 @@ public:
         ShortcutRole,
         DesktopIdRole,
         IconRole,
+        OriginIconRole,
         InstalledRole,
     };
     Q_ENUM(Role)

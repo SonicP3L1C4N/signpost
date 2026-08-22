@@ -36,9 +36,43 @@ void SearchModel::setSearch(const QString &search)
     Q_EMIT countChanged();
 }
 
+QString SearchModel::category() const
+{
+    return m_category;
+}
+
+void SearchModel::setCategory(const QString &category)
+{
+    if (category == m_category) {
+        return;
+    }
+    m_category = category;
+    invalidate();
+    Q_EMIT categoryChanged();
+    Q_EMIT countChanged();
+}
+
+QStringList SearchModel::categories() const
+{
+    QStringList found;
+    for (int row = 0; row < m_entries->rowCount(); ++row) {
+        const QString category = m_entries->entryAt(row).category;
+        if (!category.isEmpty() && !found.contains(category)) {
+            found.append(category);
+        }
+    }
+    found.sort();
+    return found;
+}
+
 int SearchModel::count() const
 {
     return rowCount();
+}
+
+int SearchModel::total() const
+{
+    return m_entries->rowCount();
 }
 
 int SearchModel::score(const Entry &entry, const QString &needle)
@@ -89,7 +123,11 @@ int SearchModel::score(const Entry &entry, const QString &needle)
 bool SearchModel::filterAcceptsRow(int row, const QModelIndex &parent) const
 {
     Q_UNUSED(parent)
-    return score(m_entries->entryAt(row), m_search) > 0;
+    const Entry &entry = m_entries->entryAt(row);
+    if (!m_category.isEmpty() && entry.category != m_category) {
+        return false;
+    }
+    return score(entry, m_search) > 0;
 }
 
 bool SearchModel::lessThan(const QModelIndex &left, const QModelIndex &right) const

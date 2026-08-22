@@ -16,10 +16,10 @@ Kirigami.ApplicationWindow {
     /** Seeded from the command line, so `signpost "task manager"` lands on it. */
     property string initialSearch: ""
 
-    minimumWidth: Kirigami.Units.gridUnit * 22
+    minimumWidth: Kirigami.Units.gridUnit * 26
     minimumHeight: Kirigami.Units.gridUnit * 20
-    width: Kirigami.Units.gridUnit * 42
-    height: Kirigami.Units.gridUnit * 32
+    width: Kirigami.Units.gridUnit * 46
+    height: Kirigami.Units.gridUnit * 34
 
     Phrasebook {
         id: phrasebook
@@ -35,16 +35,65 @@ Kirigami.ApplicationWindow {
 
         header: QQC2.Control {
             width: page.width
+
             leftPadding: Kirigami.Units.largeSpacing
             rightPadding: Kirigami.Units.largeSpacing
             topPadding: Kirigami.Units.smallSpacing
             bottomPadding: Kirigami.Units.smallSpacing
 
-            contentItem: Kirigami.SearchField {
-                text: root.initialSearch
-                placeholderText: i18n("What is it called on Windows?")
-                onTextChanged: phrasebook.search = text
-                focus: true
+            contentItem: ColumnLayout {
+                spacing: Kirigami.Units.smallSpacing
+
+                Kirigami.SearchField {
+                    id: search
+                    Layout.fillWidth: true
+                    text: root.initialSearch
+                    placeholderText: i18n("What is it called on Windows?")
+                    onTextChanged: phrasebook.search = text
+                    focus: true
+                }
+
+                // Ninety-one answers in one alphabetical column is a list to
+                // scroll rather than a thing to browse.
+                RowLayout {
+                    Layout.fillWidth: true
+                    spacing: Kirigami.Units.smallSpacing
+
+                    Kirigami.Chip {
+                        text: i18n("Everything")
+                        closable: false
+                        checkable: true
+                        checked: phrasebook.category === ""
+                        onClicked: phrasebook.category = ""
+                    }
+
+                    Repeater {
+                        model: phrasebook.categories
+
+                        Kirigami.Chip {
+                            required property string modelData
+
+                            text: modelData
+                            closable: false
+                            checkable: true
+                            checked: phrasebook.category === modelData
+                            onClicked: phrasebook.category =
+                                (phrasebook.category === modelData ? "" : modelData)
+                        }
+                    }
+
+                    Item {
+                        Layout.fillWidth: true
+                    }
+
+                    QQC2.Label {
+                        text: phrasebook.count === phrasebook.total
+                            ? i18np("%1 answer", "%1 answers", phrasebook.total)
+                            : i18n("%1 of %2", phrasebook.count, phrasebook.total)
+                        opacity: 0.6
+                        font: Kirigami.Theme.smallFont
+                    }
+                }
             }
         }
 
@@ -54,6 +103,7 @@ Kirigami.ApplicationWindow {
             model: phrasebook
             spacing: Kirigami.Units.largeSpacing
             currentIndex: -1
+            reuseItems: true
 
             delegate: EntryCard {
                 width: ListView.view.width

@@ -23,7 +23,10 @@ class SearchModel : public QSortFilterProxyModel
     QML_NAMED_ELEMENT(Phrasebook)
 
     Q_PROPERTY(QString search READ search WRITE setSearch NOTIFY searchChanged)
+    Q_PROPERTY(QString category READ category WRITE setCategory NOTIFY categoryChanged)
+    Q_PROPERTY(QStringList categories READ categories CONSTANT)
     Q_PROPERTY(int count READ count NOTIFY countChanged)
+    Q_PROPERTY(int total READ total CONSTANT)
 
 public:
     explicit SearchModel(QObject *parent = nullptr);
@@ -31,13 +34,22 @@ public:
     QString search() const;
     void setSearch(const QString &search);
 
+    /** "" means every category. */
+    QString category() const;
+    void setCategory(const QString &category);
+
+    /** Every category in the dataset, in the order they should be offered. */
+    QStringList categories() const;
+
     int count() const;
+    int total() const;
 
     /** 0 means "no match"; higher is a better one. Public so tests can rank. */
     static int score(const Entry &entry, const QString &needle);
 
 Q_SIGNALS:
     void searchChanged();
+    void categoryChanged();
     void countChanged();
 
 protected:
@@ -47,4 +59,5 @@ protected:
 private:
     EntryModel *m_entries;
     QString m_search;
+    QString m_category;
 };

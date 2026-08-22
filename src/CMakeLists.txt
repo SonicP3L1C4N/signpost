@@ -34,6 +34,20 @@ qt_add_resources(signpost "appicon"
     FILES ${CMAKE_SOURCE_DIR}/icons/sc-apps-signpost.svg
 )
 
+# Interface artwork rather than an icon theme's business, so it is carried
+# rather than installed.
+qt_add_resources(signpost "origin"
+    PREFIX "/origin"
+    BASE ${CMAKE_SOURCE_DIR}/icons/origin
+    FILES
+        ${CMAKE_SOURCE_DIR}/icons/origin/origin-apps.svg
+        ${CMAKE_SOURCE_DIR}/icons/origin/origin-files.svg
+        ${CMAKE_SOURCE_DIR}/icons/origin/origin-internet.svg
+        ${CMAKE_SOURCE_DIR}/icons/origin/origin-settings.svg
+        ${CMAKE_SOURCE_DIR}/icons/origin/origin-shortcuts.svg
+        ${CMAKE_SOURCE_DIR}/icons/origin/origin-system.svg
+)
+
 target_compile_definitions(signpost PRIVATE SIGNPOST_VERSION="${PROJECT_VERSION}")
 
 target_link_libraries(signpost PRIVATE
