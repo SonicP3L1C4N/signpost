@@ -6,6 +6,7 @@ include(ECMAddTests)
 # The phrasebook without the window: everything the tests actually exercise.
 set(SIGNPOST_SOURCES
     ${CMAKE_SOURCE_DIR}/src/entrymodel.cpp
+    ${CMAKE_SOURCE_DIR}/src/ranking.cpp
     ${CMAKE_SOURCE_DIR}/src/searchmodel.cpp
     ${CMAKE_SOURCE_DIR}/src/shortcuts.cpp
 )
@@ -36,3 +37,12 @@ ecm_add_test(abouttest.cpp ${CMAKE_SOURCE_DIR}/src/environment.cpp
 )
 target_include_directories(abouttest PRIVATE ${CMAKE_SOURCE_DIR}/src)
 target_compile_definitions(abouttest PRIVATE SIGNPOST_VERSION="${PROJECT_VERSION}")
+
+# The runner is optional, so its test is too.
+if(TARGET KF6::Runner)
+    ecm_add_test(runnertest.cpp
+        TEST_NAME runnertest
+        LINK_LIBRARIES Qt6::Test KF6::Runner
+    )
+    krunner_configure_test(runnertest signpostrunner)
+endif()

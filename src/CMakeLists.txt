@@ -8,6 +8,7 @@ add_executable(signpost
     main.cpp
     entrymodel.cpp
     environment.cpp
+    ranking.cpp
     searchmodel.cpp
     shortcuts.cpp
     launcher.cpp

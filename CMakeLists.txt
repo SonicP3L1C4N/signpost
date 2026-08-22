@@ -23,6 +23,14 @@ find_package(Qt6 ${QT_MIN_VERSION} REQUIRED COMPONENTS
 find_package(KF6 ${KF_MIN_VERSION} REQUIRED COMPONENTS
     Kirigami I18n CoreAddons Config Service KIO)
 
+# Optional so that the application still builds where KRunner's development
+# files are not installed; without it you lose the plugin, not the program.
+find_package(KF6Runner ${KF_MIN_VERSION})
+set_package_properties(KF6Runner PROPERTIES
+    TYPE OPTIONAL
+    PURPOSE "Answers Windows names in KRunner, without opening Signpost at all"
+)
+
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
@@ -31,6 +39,10 @@ ecm_set_disabled_deprecation_versions(QT 6.6 KF 6.0)
 qt_standard_project_setup(REQUIRES 6.6)
 
 add_subdirectory(src)
+
+if(TARGET KF6::Runner)
+    add_subdirectory(src/runner)
+endif()
 
 # Named <size>-<group>-<name>.svg, which is what ecm_install_icons reads to
 # work out where each one belongs in the hicolor theme.

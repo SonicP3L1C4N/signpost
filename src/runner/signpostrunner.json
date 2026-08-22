@@ -1,0 +1,12 @@
+{
+    "KPlugin": {
+        "Description": "What a Windows name is called on this desktop",
+        "EnabledByDefault": true,
+        "Icon": "signpost",
+        "License": "GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL",
+        "Name": "Signpost",
+        "Version": "0.1.0",
+        "Website": "https://github.com/SonicP3L1C4N/signpost"
+    },
+    "X-Plasma-Runner-Min-Letter-Count": 3
+}

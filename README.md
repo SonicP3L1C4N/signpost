@@ -63,6 +63,36 @@ contributors is short: **never add Microsoft artwork, logos or screenshots**, no
 matter how much better the card would look. If a card needs a stronger mark than
 the category gives it, draw one.
 
+## In KRunner
+
+The phrasebook is also a KRunner plugin, which is the form the answer really
+wants to take. Someone who has just switched presses Meta and types, because
+that is what the Start menu trained them to do — and what they type is the
+Windows word. Meeting them there costs nothing: no window to find, no
+application to remember having installed.
+
+Press Meta (or Alt+Space), type `task manager`, and **System Monitor** is in the
+list with `Task Manager on Windows · Meta+Esc` underneath it. Enter starts it.
+For an answer with nothing to launch — the registry, the Recycle Bin, OneDrive —
+Enter opens Signpost on the explanation instead, because there the explanation
+*is* the answer.
+
+The plugin is deliberately quiet. KRunner belongs to every runner at once, so
+only a Windows name or one of its aliases earns a row there; a summary that
+merely mentions the word does not, and queries under three letters are ignored.
+Both halves of that are covered by tests, because manners are the kind of thing
+that regress silently.
+
+`libkf6runner-dev` is optional at build time: without it you lose the plugin,
+not the program. Installed under a user prefix, KRunner needs to be told where
+to look —
+
+```
+QT_PLUGIN_PATH="$HOME/.local/lib/x86_64-linux-gnu/qt6/plugins" krunner --replace
+```
+
+— or install the plugin system-wide, where it needs no telling.
+
 ## Version and About
 
 The header carries the running version, and the menu beside it opens **About
@@ -98,7 +128,7 @@ Kubuntu/Debian:
 sudo apt install build-essential cmake ninja-build extra-cmake-modules \
     qt6-base-dev qt6-declarative-dev libkirigami-dev kirigami-addons-dev \
     libkf6coreaddons-dev libkf6i18n-dev libkf6config-dev libkf6service-dev \
-    libkf6kio-dev gettext
+    libkf6kio-dev libkf6runner-dev gettext
 
 cmake -B build -G Ninja
 cmake --build build

@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
 #include "entry.h"
+#include "ranking.h"
 #include "entrymodel.h"
 #include "searchmodel.h"
 
@@ -124,6 +125,32 @@ private Q_SLOTS:
             if (!desktop.isEmpty()) {
                 QVERIFY2(desktop.endsWith(QLatin1String(".desktop")), qPrintable(id));
             }
+        }
+    }
+
+    // KRunner sees every keystroke aimed at anything on the system, so what
+    // the plugin is allowed to interrupt with is a matter of manners as much
+    // as of ranking: a name or an alias earns a row, a summary that happens
+    // to contain the word does not.
+    void onlyNamesAndAliasesAreWorthInterruptingWith()
+    {
+        const Entry entry = taskManager();
+
+        for (const QString &typed : {QStringLiteral("task manager"),
+                                     QStringLiteral("task man"),
+                                     QStringLiteral("taskmgr"),
+                                     QStringLiteral("end task")}) {
+            QVERIFY2(Ranking::score(entry, typed) >= Ranking::UnpromptedThreshold,
+                     qPrintable(typed));
+        }
+
+        // In the window these still answer, and should: someone browsing has
+        // asked to be shown everything that mentions the word.
+        for (const QString &typed : {QStringLiteral("memory"),
+                                     QStringLiteral("system monitor")}) {
+            const int score = Ranking::score(entry, typed);
+            QVERIFY2(score > 0, qPrintable(typed));
+            QVERIFY2(score < Ranking::UnpromptedThreshold, qPrintable(typed));
         }
     }
 

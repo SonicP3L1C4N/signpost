@@ -6,6 +6,19 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
 
 # Changelog
 
+## Unreleased
+
+- **A KRunner plugin.** Type the Windows word into KRunner and the KDE name is
+  in the list, with the Windows term and the live shortcut underneath it. Enter
+  starts the application; where there is nothing to start, it opens Signpost on
+  the explanation. Only names and aliases match there, and queries under three
+  letters are ignored — KRunner belongs to every runner at once.
+- **Meta+/** launches Signpost, shipped as a `kglobalaccel` entry — the same
+  mechanism Signpost reads to answer questions about shortcuts, so it now
+  answers for itself and reports the binding if you change it.
+- Ranking moved into `src/ranking.{h,cpp}`: the window and the runner both ask
+  the same question and neither should own the answer.
+
 ## 0.1.0 — 2026-08-22
 
 First release, and an early one: the shape of the thing is settled, the dataset
