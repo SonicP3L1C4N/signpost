@@ -70,3 +70,16 @@ target_link_libraries(signpost PRIVATE
 install(TARGETS signpost ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 install(PROGRAMS io.github.sonicp3l1c4n.signpost.desktop
         DESTINATION ${KDE_INSTALL_APPDIR})
+
+# A launch shortcut, shipped the way every KDE application ships one: a copy of
+# the menu entry under kglobalaccel/ carrying X-KDE-Shortcuts. Which is the
+# same file this application reads to tell you what Win+E became -- it now
+# answers for itself as well.
+set(SIGNPOST_ACCEL_DIR ${CMAKE_CURRENT_BINARY_DIR}/kglobalaccel)
+file(MAKE_DIRECTORY ${SIGNPOST_ACCEL_DIR})
+file(READ ${CMAKE_CURRENT_SOURCE_DIR}/io.github.sonicp3l1c4n.signpost.desktop
+     SIGNPOST_ENTRY)
+file(WRITE ${SIGNPOST_ACCEL_DIR}/io.github.sonicp3l1c4n.signpost.desktop
+     "${SIGNPOST_ENTRY}X-KDE-Shortcuts=Meta+/\n")
+install(FILES ${SIGNPOST_ACCEL_DIR}/io.github.sonicp3l1c4n.signpost.desktop
+        DESTINATION ${KDE_INSTALL_DATADIR}/kglobalaccel)

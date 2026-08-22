@@ -82,8 +82,13 @@ signpost                  # the whole phrasebook, alphabetically
 signpost "task manager"   # straight to the answer
 ```
 
-The second form is the one worth putting on a keyboard shortcut, or typing
-into KRunner, while you are still learning your way around.
+Installed, it also answers to **Meta+/** — shipped as a `kglobalaccel` entry,
+which is the same mechanism Signpost reads to tell you what Win+E became, so it
+now answers for itself as well. The binding takes effect at your next login, and
+System Settings → Shortcuts will change it like any other.
+
+The second form is the one worth putting on a key of your own while you are
+still learning your way around.
 
 ## Building
 
