@@ -29,3 +29,10 @@ ecm_add_test(shortcutstest.cpp ${CMAKE_SOURCE_DIR}/src/shortcuts.cpp
     LINK_LIBRARIES Qt6::Test Qt6::Gui KF6::ConfigCore
 )
 target_include_directories(shortcutstest PRIVATE ${CMAKE_SOURCE_DIR}/src)
+
+ecm_add_test(abouttest.cpp ${CMAKE_SOURCE_DIR}/src/environment.cpp
+    TEST_NAME abouttest
+    LINK_LIBRARIES Qt6::Test Qt6::Gui Qt6::Qml KF6::CoreAddons
+)
+target_include_directories(abouttest PRIVATE ${CMAKE_SOURCE_DIR}/src)
+target_compile_definitions(abouttest PRIVATE SIGNPOST_VERSION="${PROJECT_VERSION}")

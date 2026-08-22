@@ -63,6 +63,18 @@ contributors is short: **never add Microsoft artwork, logos or screenshots**, no
 matter how much better the card would look. If a card needs a stronger mark than
 the category gives it, draw one.
 
+## Version and About
+
+The header carries the running version, and the menu beside it opens **About
+Signpost** — which holds a Details block: the version, how many entries loaded,
+Plasma, the session, Qt and Frameworks, behind a button that copies the lot.
+
+![The About page: Signpost 0.1.0, the licence and links, and a Details block listing the entry count with the Plasma, session, Qt and Frameworks versions](docs/about.png)
+
+The entry count is in there deliberately. It is the one number that says whether
+the dataset loaded at all, which is exactly what a report about a missing answer
+needs and exactly what the person reporting it cannot know to mention.
+
 ## Using it
 
 ```

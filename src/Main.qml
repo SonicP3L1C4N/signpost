@@ -25,6 +25,11 @@ Kirigami.ApplicationWindow {
         id: phrasebook
     }
 
+    Component {
+        id: aboutPage
+        AboutPage {}
+    }
+
     pageStack.initialPage: Kirigami.ScrollablePage {
         id: page
 
@@ -92,6 +97,47 @@ Kirigami.ApplicationWindow {
                             : i18n("%1 of %2", phrasebook.count, phrasebook.total)
                         opacity: 0.6
                         font: Kirigami.Theme.smallFont
+                    }
+
+                    // Which version is running, answerable at a glance rather
+                    // than only from the About page.
+                    QQC2.Label {
+                        text: i18n("· Signpost %1", Environment.version)
+                        opacity: 0.45
+                        font: Kirigami.Theme.smallFont
+                    }
+
+                    QQC2.ToolButton {
+                        icon.name: "application-menu"
+                        display: QQC2.AbstractButton.IconOnly
+                        text: i18n("Menu")
+                        onClicked: menu.popup(this, 0, height)
+
+                        QQC2.Menu {
+                            id: menu
+
+                            QQC2.MenuItem {
+                                icon.name: "help-about"
+                                text: i18n("About Signpost")
+                                onTriggered: root.pageStack.push(aboutPage, {
+                                    entryCount: phrasebook.total,
+                                })
+                            }
+
+                            QQC2.MenuSeparator {}
+
+                            QQC2.MenuItem {
+                                icon.name: "internet-web-browser"
+                                text: i18n("Project page…")
+                                onTriggered: Qt.openUrlExternally(Environment.homepage)
+                            }
+
+                            QQC2.MenuItem {
+                                icon.name: "tools-report-bug"
+                                text: i18n("Report a bug…")
+                                onTriggered: Qt.openUrlExternally(Environment.bugAddress)
+                            }
+                        }
                     }
                 }
             }

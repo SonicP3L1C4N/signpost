@@ -7,6 +7,7 @@
 add_executable(signpost
     main.cpp
     entrymodel.cpp
+    environment.cpp
     searchmodel.cpp
     shortcuts.cpp
     launcher.cpp
@@ -18,6 +19,7 @@ qt_add_qml_module(signpost
     QML_FILES
         Main.qml
         EntryCard.qml
+        AboutPage.qml
 )
 
 # The dataset is compiled in: it is small, it is the program's whole subject,
