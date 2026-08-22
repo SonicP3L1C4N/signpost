@@ -5,6 +5,7 @@
 #include "entrymodel.h"
 #include "searchmodel.h"
 
+#include <QSet>
 #include <QTest>
 
 class SearchTest : public QObject
@@ -86,6 +87,43 @@ private Q_SLOTS:
         for (const QString &term : promised) {
             phrasebook.setSearch(term);
             QVERIFY2(phrasebook.count() > 0, qPrintable(term));
+        }
+    }
+
+    // Contributions arrive as data, not code, so the shape of the data is
+    // what has to be defended: a typo in an id is invisible until someone
+    // searches for the thing it was meant to answer.
+    void everyEntryIsWellFormed()
+    {
+        SearchModel phrasebook;
+        QSet<QString> seen;
+        for (int row = 0; row < phrasebook.count(); ++row) {
+            const QModelIndex index = phrasebook.index(row, 0);
+            const QString windows = index.data(EntryModel::WindowsRole).toString();
+            const QString kde = index.data(EntryModel::KdeRole).toString();
+            const QString id = index.data(EntryModel::IdRole).toString();
+            const QString icon = index.data(EntryModel::IconRole).toString();
+            const QString desktop = index.data(EntryModel::DesktopIdRole).toString();
+
+            QVERIFY2(!id.isEmpty(), qPrintable(windows));
+            QVERIFY2(!seen.contains(id), qPrintable(id));
+            seen.insert(id);
+            QVERIFY2(!kde.isEmpty(), qPrintable(id));
+            QVERIFY2(!index.data(EntryModel::SummaryRole).toString().isEmpty(),
+                     qPrintable(id));
+            QVERIFY2(!index.data(EntryModel::CategoryRole).toString().isEmpty(),
+                     qPrintable(id));
+            // Every card shows an icon, so every entry resolves to a name --
+            // and not to the fallback, which is what a forgotten one looks
+            // like: a generic glyph on an otherwise finished card.
+            QVERIFY2(!icon.isEmpty(), qPrintable(id));
+            if (desktop.isEmpty()) {
+                QVERIFY2(icon != QLatin1String("help-about"), qPrintable(id));
+            }
+            // A .desktop id without its suffix silently never resolves.
+            if (!desktop.isEmpty()) {
+                QVERIFY2(desktop.endsWith(QLatin1String(".desktop")), qPrintable(id));
+            }
         }
     }
 

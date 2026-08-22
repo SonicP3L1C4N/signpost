@@ -26,6 +26,7 @@ public:
         CategoryRole,
         ShortcutRole,
         DesktopIdRole,
+        IconRole,
         InstalledRole,
     };
     Q_ENUM(Role)
@@ -45,5 +46,7 @@ public:
 private:
     QList<Entry> m_entries;
     QStringList m_shortcuts;
+    QStringList m_resolved;   //< the candidate that turned out to be installed
+    QStringList m_icons;
     QList<bool> m_installed;
 };

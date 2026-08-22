@@ -22,7 +22,17 @@ Entry readEntry(const QJsonObject &object)
     entry.kde = object.value(QLatin1String("kde")).toString();
     entry.summary = object.value(QLatin1String("summary")).toString();
     entry.category = object.value(QLatin1String("category")).toString();
-    entry.desktopId = object.value(QLatin1String("desktop")).toString();
+    // "desktop" is one id or several, and several is the honest case.
+    const QJsonValue desktop = object.value(QLatin1String("desktop"));
+    if (desktop.isArray()) {
+        const QJsonArray candidates = desktop.toArray();
+        for (const QJsonValue &candidate : candidates) {
+            entry.desktopIds.append(candidate.toString());
+        }
+    } else if (!desktop.toString().isEmpty()) {
+        entry.desktopIds.append(desktop.toString());
+    }
+    entry.iconName = object.value(QLatin1String("icon")).toString();
     entry.shortcutDesktopId = object.value(QLatin1String("shortcutDesktop")).toString();
 
     const QJsonArray aliases = object.value(QLatin1String("aliases")).toArray();
@@ -75,12 +85,30 @@ bool EntryModel::load(const QString &path)
         }
         m_entries.append(entry);
         m_shortcuts.append(Shortcuts::forEntry(entry));
+
+        KService::Ptr service;
+        QString resolved;
+        for (const QString &candidate : std::as_const(entry.desktopIds)) {
+            service = KService::serviceByStorageId(candidate);
+            if (service) {
+                resolved = candidate;
+                break;
+            }
+        }
+        // Nothing installed: keep the first candidate, which is what the Get
+        // it button hands to Discover.
+        m_resolved.append(resolved.isEmpty() ? entry.desktopIds.value(0) : resolved);
         // An entry with nothing to launch counts as present: the answer is
         // "it is in Dolphin" or "there is no such thing here", not an install.
-        const KService::Ptr service = entry.desktopId.isEmpty()
-            ? KService::Ptr()
-            : KService::serviceByStorageId(entry.desktopId);
-        m_installed.append(entry.desktopId.isEmpty() || bool(service));
+        m_installed.append(entry.desktopIds.isEmpty() || bool(service));
+
+        // The application's own icon says more than any category glyph could;
+        // an entry with no application names one itself.
+        QString icon = entry.iconName;
+        if (icon.isEmpty() && service) {
+            icon = service->icon();
+        }
+        m_icons.append(icon.isEmpty() ? QStringLiteral("help-about") : icon);
     }
     endResetModel();
 
@@ -113,7 +141,9 @@ QVariant EntryModel::data(const QModelIndex &index, int role) const
     case ShortcutRole:
         return m_shortcuts.at(index.row());
     case DesktopIdRole:
-        return entry.desktopId;
+        return m_resolved.at(index.row());
+    case IconRole:
+        return m_icons.at(index.row());
     case InstalledRole:
         return m_installed.at(index.row());
     default:
@@ -131,6 +161,7 @@ QHash<int, QByteArray> EntryModel::roleNames() const
         {CategoryRole, QByteArrayLiteral("category")},
         {ShortcutRole, QByteArrayLiteral("shortcut")},
         {DesktopIdRole, QByteArrayLiteral("desktopId")},
+        {IconRole, QByteArrayLiteral("iconName")},
         {InstalledRole, QByteArrayLiteral("installed")},
     };
 }

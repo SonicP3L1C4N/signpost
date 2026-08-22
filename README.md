@@ -42,8 +42,9 @@ says so, and offers Discover instead of pretending.
 
 ## Status
 
-Early, but it runs: search, 35 entries, live shortcuts, and the two buttons.
-The dataset is the part that needs the most work — see below.
+Early, but it runs: search, 91 entries, live shortcuts, application icons, and
+the two buttons. The dataset is still the part that needs the most work — see
+below.
 
 ![The full list with nothing typed, reading as a glossary](docs/glossary.png)
 
@@ -89,11 +90,22 @@ ctest --test-dir build --output-on-failure
 }
 ```
 
-`desktop` is what the Open button starts, and where the launch shortcut is
-looked up. For a thing with no application behind it, `action` names a
+`desktop` is what the Open button starts, where the launch shortcut is looked
+up, and where the card's icon comes from. It takes a **list** as well as a
+single id, because the same application is packaged differently on different
+systems — Firefox is `firefox.desktop` here, `firefox_firefox.desktop` on a
+snap, `org.mozilla.firefox.desktop` on a Flatpak — and the first one that is
+actually installed wins:
+
+```json
+"desktop": ["firefox.desktop", "firefox_firefox.desktop", "org.mozilla.firefox.desktop"]
+```
+
+For a thing with no application behind it, `action` names a
 `kglobalshortcutsrc` entry instead — `{"component": "kwin", "name": "Show
-Desktop"}` — and `shortcutDesktop` covers the few whose shortcut is defined
-under a different id from the one that launches.
+Desktop"}` — `icon` names a theme icon, since every card shows one, and
+`shortcutDesktop` covers the few whose shortcut is defined under a different id
+from the one that launches.
 
 Three rules for a new entry:
 

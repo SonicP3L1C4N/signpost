@@ -4,6 +4,50 @@
   "version": 1,
   "entries": [
     {
+      "id": "exe",
+      "windows": ".exe file",
+      "aliases": [
+        "installer",
+        "setup.exe",
+        "msi",
+        "install a program",
+        "download software"
+      ],
+      "kde": "Software from Discover",
+      "category": "System",
+      "icon": "application-x-executable",
+      "summary": "Windows programs do not run here directly, and you very rarely need one to. Software comes from Discover, already checked and updated with everything else. For a Windows program you cannot replace, Bottles or Wine will usually run it."
+    },
+    {
+      "id": "pdf",
+      "windows": "Adobe Reader",
+      "aliases": [
+        "acrobat",
+        "open pdf",
+        "pdf viewer"
+      ],
+      "kde": "Okular",
+      "category": "Apps",
+      "desktop": "org.kde.okular.desktop",
+      "summary": "Reads PDFs, and also annotates, fills forms and signs them without asking you to buy anything."
+    },
+    {
+      "id": "close-window",
+      "windows": "Alt+F4",
+      "aliases": [
+        "close window",
+        "quit application"
+      ],
+      "kde": "Close Window",
+      "category": "Shortcuts",
+      "icon": "window-close",
+      "action": {
+        "component": "kwin",
+        "name": "Window Close"
+      },
+      "summary": "The same chord, and closing the last window of an application usually quits it here too."
+    },
+    {
       "id": "alt-tab",
       "windows": "Alt+Tab",
       "aliases": [
@@ -17,7 +61,61 @@
         "component": "kwin",
         "name": "Walk Through Windows"
       },
-      "summary": "Works exactly as you expect. The look of it, and whether it covers one desktop or all of them, is in System Settings under Window Management."
+      "summary": "Works exactly as you expect. The look of it, and whether it covers one desktop or all of them, is in System Settings under Window Management.",
+      "icon": "preferences-system-windows"
+    },
+    {
+      "id": "appdata",
+      "windows": "AppData",
+      "aliases": [
+        "%appdata%",
+        "roaming",
+        "application settings",
+        "config"
+      ],
+      "kde": "~/.config and ~/.local/share",
+      "category": "Files",
+      "icon": "folder",
+      "summary": "Settings in ~/.config, data in ~/.local/share. Both are plain files in your home folder — copyable to a new machine, and safe to delete when an application misbehaves."
+    },
+    {
+      "id": "bitlocker",
+      "windows": "BitLocker",
+      "aliases": [
+        "encryption",
+        "encrypt drive",
+        "secure folder"
+      ],
+      "kde": "LUKS, and Plasma Vaults",
+      "category": "System",
+      "icon": "dialog-password",
+      "summary": "Whole-disk encryption is chosen when the system is installed. For a folder rather than a disk, Plasma Vaults makes an encrypted one you unlock from the tray."
+    },
+    {
+      "id": "bluetooth",
+      "windows": "Bluetooth",
+      "aliases": [
+        "pair device",
+        "headphones"
+      ],
+      "kde": "Bluetooth",
+      "category": "Settings",
+      "desktop": "kcm_bluetooth.desktop",
+      "summary": "Pairing works the same way. Audio devices usually connect and pick the right profile on their own."
+    },
+    {
+      "id": "c-drive",
+      "windows": "C: drive",
+      "aliases": [
+        "drive letter",
+        "D drive",
+        "root",
+        "my computer"
+      ],
+      "kde": "/ — the root of everything",
+      "category": "Files",
+      "icon": "drive-harddisk",
+      "summary": "One tree rather than lettered drives. Other disks appear inside it, usually under /media, and Dolphin's Places is the friendly way in."
     },
     {
       "id": "calculator",
@@ -58,7 +156,8 @@
         "component": "plasmashell",
         "name": "show-on-mouse-pos"
       },
-      "summary": "Everything you have copied, waiting in a list. It is on by default and lives in the system tray."
+      "summary": "Everything you have copied, waiting in a list. It is on by default and lives in the system tray.",
+      "icon": "klipper"
     },
     {
       "id": "terminal",
@@ -107,6 +206,85 @@
       "summary": "One window for the lot — appearance, hardware, users, networking — with a search box at the top that is usually faster than the categories."
     },
     {
+      "id": "copilot",
+      "windows": "Copilot",
+      "aliases": [
+        "Cortana",
+        "assistant",
+        "recall",
+        "ai"
+      ],
+      "kde": "Not shipped",
+      "category": "System",
+      "icon": "dialog-information",
+      "summary": "Nothing on this desktop watches what you do, records the screen, or sends it anywhere. If you want an assistant, you install one and it is yours."
+    },
+    {
+      "id": "credentials",
+      "windows": "Credential Manager",
+      "aliases": [
+        "saved passwords",
+        "password vault",
+        "keychain"
+      ],
+      "kde": "KWallet",
+      "category": "System",
+      "desktop": "org.kde.kwalletmanager.desktop",
+      "summary": "Wi-Fi keys, saved logins and application passwords, unlocked with your login password."
+    },
+    {
+      "id": "ctrl-alt-del",
+      "windows": "Ctrl+Alt+Delete",
+      "aliases": [
+        "three finger salute",
+        "sign out",
+        "end task"
+      ],
+      "kde": "Log out screen",
+      "category": "Shortcuts",
+      "icon": "system-shutdown",
+      "summary": "Offers to log out, restart or shut down. For a frozen window, Meta+Ctrl+Esc turns the pointer into a crosshair and kills the one you click."
+    },
+    {
+      "id": "date-time",
+      "windows": "Date and time",
+      "aliases": [
+        "timezone",
+        "clock",
+        "set time"
+      ],
+      "kde": "Date & Time",
+      "category": "Settings",
+      "desktop": "kcm_clock.desktop",
+      "summary": "Time is set from the network by default. If you dual-boot Windows, this is where the two disagree about what the hardware clock means."
+    },
+    {
+      "id": "default-apps",
+      "windows": "Default apps",
+      "aliases": [
+        "default browser",
+        "default program",
+        "set defaults"
+      ],
+      "kde": "Default Applications",
+      "category": "Settings",
+      "desktop": "kcm_componentchooser.desktop",
+      "summary": "Browser, email, terminal and file manager. Per-file-type choices are next door in File Associations."
+    },
+    {
+      "id": "defrag",
+      "windows": "Defragment",
+      "aliases": [
+        "defrag",
+        "optimise drives",
+        "disk optimisation"
+      ],
+      "kde": "Not needed",
+      "category": "System",
+      "icon": "drive-harddisk",
+      "summary": "The file systems used here do not fragment the way NTFS did, and SSDs are trimmed automatically. There is nothing to schedule."
+    },
+    {
       "id": "device-manager",
       "windows": "Device Manager",
       "aliases": [
@@ -119,6 +297,20 @@
       "category": "System",
       "desktop": "org.kde.kinfocenter.desktop",
       "summary": "Reports what hardware you have and what it is doing. There is usually nothing to install: drivers arrive with the system rather than from the manufacturer's website."
+    },
+    {
+      "id": "disk-cleanup",
+      "windows": "Disk Cleanup",
+      "aliases": [
+        "cleanmgr",
+        "storage sense",
+        "free up space",
+        "what is using my disk"
+      ],
+      "kde": "Filelight",
+      "category": "Apps",
+      "desktop": "org.kde.filelight.desktop",
+      "summary": "Shows what is actually filling the disk, as rings you can click into. There is no temp-file ritual to perform first."
     },
     {
       "id": "disk-management",
@@ -134,6 +326,36 @@
       "category": "System",
       "desktop": "org.kde.partitionmanager.desktop",
       "summary": "Partition and format drives. There are no drive letters here: everything appears as a folder, and removable drives show up in Dolphin's Places when you plug them in."
+    },
+    {
+      "id": "display-settings",
+      "windows": "Display settings",
+      "aliases": [
+        "resolution",
+        "scaling",
+        "refresh rate",
+        "multiple displays",
+        "dpi"
+      ],
+      "kde": "Display Configuration",
+      "category": "Settings",
+      "desktop": "kcm_kscreen.desktop",
+      "summary": "Resolution, refresh rate, scaling and how the screens are arranged. Fractional scaling works and does not need a sign-out."
+    },
+    {
+      "id": "accessibility",
+      "windows": "Ease of Access",
+      "aliases": [
+        "accessibility",
+        "magnifier",
+        "narrator",
+        "high contrast",
+        "sticky keys"
+      ],
+      "kde": "Accessibility",
+      "category": "Settings",
+      "desktop": "kcm_access.desktop",
+      "summary": "Sticky keys, bell, mouse keys and screen reader settings. The screen magnifier is a KWin effect rather than a separate program."
     },
     {
       "id": "emoji",
@@ -180,6 +402,102 @@
       "summary": "Your file manager. The left column is Places rather than This PC, and it does tabs, a split view and a built-in terminal."
     },
     {
+      "id": "backup",
+      "windows": "File History",
+      "aliases": [
+        "backup",
+        "system restore",
+        "restore point",
+        "time machine"
+      ],
+      "kde": "Backups",
+      "category": "Settings",
+      "desktop": "kcm_kup.desktop",
+      "summary": "Kup schedules backups to another disk or a remote. There is no restore point to roll back to instead — take backups."
+    },
+    {
+      "id": "fonts",
+      "windows": "Fonts",
+      "aliases": [
+        "install font",
+        "font size",
+        "cleartype",
+        "ttf"
+      ],
+      "kde": "Fonts",
+      "category": "Settings",
+      "desktop": "kcm_fonts.desktop",
+      "summary": "Sizes and anti-aliasing here; to install a font, open the file and press Install, or drop it in ~/.local/share/fonts."
+    },
+    {
+      "id": "games",
+      "windows": "Games",
+      "aliases": [
+        "Xbox",
+        "Steam",
+        "Game Bar",
+        "gaming",
+        "directx"
+      ],
+      "kde": "Steam and Proton",
+      "category": "Apps",
+      "icon": "applications-games",
+      "summary": "Install Steam from Discover and turn on Steam Play: most Windows games run through Proton, often unchanged. Anti-cheat is the usual exception — check ProtonDB before buying."
+    },
+    {
+      "id": "search-indexing",
+      "windows": "Indexing Options",
+      "aliases": [
+        "windows search",
+        "search index",
+        "find files"
+      ],
+      "kde": "File Search",
+      "category": "Settings",
+      "desktop": "kcm_baloofile.desktop",
+      "summary": "What gets indexed for searching, and which folders to leave out. Searching is then done from KRunner or Dolphin."
+    },
+    {
+      "id": "ipconfig",
+      "windows": "ipconfig",
+      "aliases": [
+        "ping",
+        "netstat",
+        "command line network",
+        "cmd commands"
+      ],
+      "kde": "ip addr",
+      "category": "System",
+      "desktop": "org.kde.konsole.desktop",
+      "summary": "ip addr for addresses, ping as before, ss for connections. The commands differ, and instructions you find will assume these ones."
+    },
+    {
+      "id": "keyboard-settings",
+      "windows": "Keyboard settings",
+      "aliases": [
+        "keyboard layout",
+        "key repeat",
+        "numlock"
+      ],
+      "kde": "Keyboard",
+      "category": "Settings",
+      "desktop": "kcm_keyboard.desktop",
+      "summary": "Layouts, repeat rate, and whether NumLock is on at login — which is the setting everyone looks for on day one."
+    },
+    {
+      "id": "keyboard-shortcuts",
+      "windows": "Keyboard shortcuts",
+      "aliases": [
+        "hotkeys",
+        "key bindings",
+        "assign shortcut"
+      ],
+      "kde": "Shortcuts",
+      "category": "Settings",
+      "desktop": "kcm_keys.desktop",
+      "summary": "Every shortcut on the system, rebindable, including the ones this application reads to answer you."
+    },
+    {
       "id": "lock",
       "windows": "Lock screen",
       "aliases": [
@@ -193,7 +511,70 @@
         "component": "ksmserver",
         "name": "Lock Session"
       },
-      "summary": "Locks the session. Ctrl+Alt+Delete is not the way in here — it offers to log out or shut down instead."
+      "summary": "Locks the session. Ctrl+Alt+Delete is not the way in here — it offers to log out or shut down instead.",
+      "icon": "system-lock-screen"
+    },
+    {
+      "id": "mail",
+      "windows": "Mail",
+      "aliases": [
+        "Outlook",
+        "email client",
+        "Windows Mail"
+      ],
+      "kde": "Thunderbird",
+      "category": "Apps",
+      "desktop": [
+        "thunderbird.desktop",
+        "thunderbird_thunderbird.desktop",
+        "org.mozilla.Thunderbird.desktop"
+      ],
+      "summary": "Thunderbird is the usual choice and imports from Outlook. KMail is the KDE one, and fits better if you use the rest of Kontact."
+    },
+    {
+      "id": "map-network-drive",
+      "windows": "Map network drive",
+      "aliases": [
+        "network share",
+        "smb",
+        "nas",
+        "shared folder"
+      ],
+      "kde": "Dolphin — Network",
+      "category": "Files",
+      "desktop": "org.kde.dolphin.desktop",
+      "summary": "Type smb://server/share into Dolphin's address bar, or use Network in Places. No drive letter is assigned; it is a folder like any other."
+    },
+    {
+      "id": "microsoft-account",
+      "windows": "Microsoft account",
+      "aliases": [
+        "sign in",
+        "online account",
+        "OneDrive account"
+      ],
+      "kde": "A local account",
+      "category": "System",
+      "icon": "user-identity",
+      "summary": "Your account is on the machine. Nothing needs signing in to for the desktop to work, and you can add online accounts later if you want them."
+    },
+    {
+      "id": "browser",
+      "windows": "Microsoft Edge",
+      "aliases": [
+        "Internet Explorer",
+        "browser",
+        "Chrome",
+        "internet"
+      ],
+      "kde": "Firefox",
+      "category": "Internet",
+      "desktop": [
+        "firefox.desktop",
+        "firefox_firefox.desktop",
+        "org.mozilla.firefox.desktop"
+      ],
+      "summary": "Firefox comes with most systems; Chrome, Chromium, Vivaldi and Edge itself are all available. Your bookmarks and passwords come across by signing in or importing the profile."
     },
     {
       "id": "office",
@@ -218,12 +599,71 @@
         "install software",
         "appwiz.cpl",
         "uninstall",
-        "Win+I"
+        "Win+I",
+        "download an installer",
+        "exe",
+        "setup.exe"
       ],
       "kde": "Discover",
       "category": "System",
       "desktop": "org.kde.discover.desktop",
       "summary": "Where software is installed and removed. Almost everything comes from here rather than from a downloaded installer, and it is free of charge and free of adverts."
+    },
+    {
+      "id": "mouse-settings",
+      "windows": "Mouse settings",
+      "aliases": [
+        "pointer speed",
+        "double-click",
+        "left-handed"
+      ],
+      "kde": "Mouse",
+      "category": "Settings",
+      "desktop": "kcm_mouse.desktop",
+      "summary": "Pointer speed, acceleration and button order."
+    },
+    {
+      "id": "my-documents",
+      "windows": "My Documents",
+      "aliases": [
+        "Documents",
+        "Downloads",
+        "Pictures",
+        "user folder"
+      ],
+      "kde": "Your home folder",
+      "category": "Files",
+      "desktop": "org.kde.dolphin.desktop",
+      "summary": "Documents, Downloads, Pictures and the rest live in your home folder, the same way, and Dolphin's Places lists them."
+    },
+    {
+      "id": "network-settings",
+      "windows": "Network settings",
+      "aliases": [
+        "ncpa.cpl",
+        "wifi",
+        "wi-fi",
+        "ethernet",
+        "ip address",
+        "vpn"
+      ],
+      "kde": "Networks",
+      "category": "Settings",
+      "desktop": "kcm_networkmanagement.desktop",
+      "summary": "Wi-Fi, wired, VPN and mobile broadband. The tray icon is the quick way in; this is where saved connections are edited."
+    },
+    {
+      "id": "night-light",
+      "windows": "Night light",
+      "aliases": [
+        "blue light",
+        "warm colours",
+        "f.lux"
+      ],
+      "kde": "Night Light",
+      "category": "Settings",
+      "desktop": "kcm_nightlight.desktop",
+      "summary": "Warms the screen after dark, on a schedule or by sunset at your location."
     },
     {
       "id": "notepad",
@@ -240,6 +680,20 @@
       "summary": "A text editor that grew up: syntax highlighting, a file tree, split views. KWrite is the same editor with the extras taken away."
     },
     {
+      "id": "notifications",
+      "windows": "Notifications",
+      "aliases": [
+        "action centre",
+        "focus assist",
+        "do not disturb",
+        "toast"
+      ],
+      "kde": "Notifications",
+      "category": "Settings",
+      "desktop": "kcm_notifications.desktop",
+      "summary": "Per-application rules, and a Do Not Disturb switch in the tray that actually stays where you put it."
+    },
+    {
       "id": "onedrive",
       "windows": "OneDrive",
       "aliases": [
@@ -250,7 +704,22 @@
       ],
       "kde": "No client is shipped",
       "category": "Files",
-      "summary": "Nothing syncs OneDrive out of the box. Dolphin can open a remote folder over the network, and rclone handles OneDrive and Google Drive properly, including keeping a folder in step."
+      "summary": "Nothing syncs OneDrive out of the box. Dolphin can open a remote folder over the network, and rclone handles OneDrive and Google Drive properly, including keeping a folder in step.",
+      "icon": "cloud-upload"
+    },
+    {
+      "id": "file-associations",
+      "windows": "Open with",
+      "aliases": [
+        "file associations",
+        "file types",
+        "default program",
+        "change association"
+      ],
+      "kde": "File Associations",
+      "category": "Settings",
+      "desktop": "kcm_filetypes.desktop",
+      "summary": "Which application opens which kind of file, searchable by extension. Dolphin's right-click Open With sets the same thing for one file."
     },
     {
       "id": "paint",
@@ -265,6 +734,33 @@
       "category": "Apps",
       "desktop": "org.kde.kolourpaint.desktop",
       "summary": "The simple one, for a crop, an arrow and some text. Krita is the serious one, if what you actually wanted was painting."
+    },
+    {
+      "id": "personalise",
+      "windows": "Personalise",
+      "aliases": [
+        "wallpaper",
+        "desktop background",
+        "change background"
+      ],
+      "kde": "Wallpaper",
+      "category": "Settings",
+      "desktop": "kcm_wallpaper.desktop",
+      "summary": "Right-clicking the desktop gets there fastest: Configure Desktop and Wallpaper. Each virtual desktop can have its own."
+    },
+    {
+      "id": "phone-link",
+      "windows": "Phone Link",
+      "aliases": [
+        "Your Phone",
+        "android",
+        "phone notifications",
+        "text from pc"
+      ],
+      "kde": "KDE Connect",
+      "category": "Apps",
+      "desktop": "org.kde.kdeconnect.app.desktop",
+      "summary": "Notifications, files, clipboard, SMS and using the phone as a remote — with Android and iOS, over your own network rather than a Microsoft account."
     },
     {
       "id": "photos",
@@ -294,6 +790,21 @@
       "summary": "Krita is the painting one and is genuinely first rate. For photo retouching, GIMP is the closer match."
     },
     {
+      "id": "power-options",
+      "windows": "Power options",
+      "aliases": [
+        "power plan",
+        "sleep",
+        "battery",
+        "screen timeout",
+        "hibernate"
+      ],
+      "kde": "Energy Saving",
+      "category": "Settings",
+      "desktop": "kcm_powerdevilprofilesconfig.desktop",
+      "summary": "Separate behaviour on battery and on mains, including what closing the lid does."
+    },
+    {
       "id": "printers",
       "windows": "Printers & scanners",
       "aliases": [
@@ -305,6 +816,32 @@
       "category": "Settings",
       "desktop": "kcm_printer_manager.desktop",
       "summary": "Most printers are found on the network and set themselves up without a driver download. Scanners have their own application, Skanpage."
+    },
+    {
+      "id": "product-key",
+      "windows": "Product key",
+      "aliases": [
+        "activation",
+        "licence",
+        "genuine windows",
+        "watermark"
+      ],
+      "kde": "Nothing to activate",
+      "category": "System",
+      "icon": "security-high",
+      "summary": "There is no key, no activation and no watermark. The same install works on as many machines as you like, and updates do not check who you are."
+    },
+    {
+      "id": "program-files",
+      "windows": "Program Files",
+      "aliases": [
+        "installed programs folder",
+        "C:\\\\Program Files"
+      ],
+      "kde": "/usr — and you never go there",
+      "category": "Files",
+      "icon": "folder",
+      "summary": "Applications are spread across /usr by the package manager rather than kept in a folder each. Nothing you install needs you to visit it."
     },
     {
       "id": "project",
@@ -333,7 +870,21 @@
       ],
       "kde": "Trash",
       "category": "Files",
-      "summary": "Same idea, different door: it is in Dolphin's Places list, or type trash:/ into the address bar. Emptying it is a right-click on the entry."
+      "summary": "Same idea, different door: it is in Dolphin's Places list, or type trash:/ into the address bar. Emptying it is a right-click on the entry.",
+      "icon": "user-trash"
+    },
+    {
+      "id": "region-language",
+      "windows": "Region and language",
+      "aliases": [
+        "language",
+        "locale",
+        "spell check"
+      ],
+      "kde": "Region & Language",
+      "category": "Settings",
+      "desktop": "kcm_regionandlang.desktop",
+      "summary": "Language, date and number formats. Adding a language may install extra packages the first time."
     },
     {
       "id": "registry",
@@ -345,7 +896,22 @@
       ],
       "kde": "Configuration files",
       "category": "System",
-      "summary": "There is no registry. Settings are plain text files under ~/.config, one per application — readable, copyable to another machine, and safe to delete when an application misbehaves."
+      "summary": "There is no registry. Settings are plain text files under ~/.config, one per application — readable, copyable to another machine, and safe to delete when an application misbehaves.",
+      "icon": "preferences-system"
+    },
+    {
+      "id": "remote-desktop",
+      "windows": "Remote Desktop",
+      "aliases": [
+        "mstsc",
+        "rdp",
+        "vnc",
+        "remote assistance"
+      ],
+      "kde": "KRDC",
+      "category": "Apps",
+      "desktop": "org.kde.krdc.desktop",
+      "summary": "Connects out over RDP and VNC. To let someone in, System Settings has Remote Desktop, and KDE Connect covers most of what Quick Assist was for."
     },
     {
       "id": "run",
@@ -361,7 +927,48 @@
       "kde": "KRunner",
       "category": "System",
       "shortcutDesktop": "org.kde.krunner.desktop",
-      "summary": "Type to launch, but also to calculate, convert units, open a folder, or search your files. Worth learning early."
+      "summary": "Type to launch, but also to calculate, convert units, open a folder, or search your files. Worth learning early.",
+      "icon": "krunner"
+    },
+    {
+      "id": "safe-mode",
+      "windows": "Safe Mode",
+      "aliases": [
+        "recovery",
+        "boot menu",
+        "f8",
+        "startup repair"
+      ],
+      "kde": "Recovery mode, from the boot menu",
+      "category": "System",
+      "icon": "system-reboot",
+      "summary": "Hold Shift as it boots for the menu, then a recovery entry. Because updates are atomic and the old kernel stays installed, you can usually just pick the previous one."
+    },
+    {
+      "id": "screensaver",
+      "windows": "Screen saver",
+      "aliases": [
+        "lock timeout",
+        "screensaver",
+        "auto lock"
+      ],
+      "kde": "Screen Locking",
+      "category": "Settings",
+      "desktop": "kcm_screenlocker.desktop",
+      "summary": "When the screen locks and whether it asks for a password on wake."
+    },
+    {
+      "id": "background-services",
+      "windows": "Services",
+      "aliases": [
+        "services.msc",
+        "startup services",
+        "daemons"
+      ],
+      "kde": "Background Services",
+      "category": "System",
+      "desktop": "kcm_kded.desktop",
+      "summary": "The desktop's own background services. System services are systemd's: systemctl status in Konsole, which is what instructions will assume."
     },
     {
       "id": "show-desktop",
@@ -377,7 +984,40 @@
         "component": "kwin",
         "name": "Show Desktop"
       },
-      "summary": "Clears the windows out of the way and puts them back."
+      "summary": "Clears the windows out of the way and puts them back.",
+      "icon": "user-desktop"
+    },
+    {
+      "id": "login-screen",
+      "windows": "Sign-in screen",
+      "aliases": [
+        "logon screen",
+        "lock screen picture",
+        "sddm"
+      ],
+      "kde": "Login Screen (SDDM)",
+      "category": "Settings",
+      "desktop": "kcm_sddm.desktop",
+      "summary": "The screen before you are logged in: theme, background, and whether it logs you in automatically."
+    },
+    {
+      "id": "snap-window",
+      "windows": "Snap a window",
+      "aliases": [
+        "Win+Left",
+        "Win+Right",
+        "snap assist",
+        "dock window",
+        "tile"
+      ],
+      "kde": "Quick Tile",
+      "category": "Shortcuts",
+      "icon": "view-split-left-right",
+      "action": {
+        "component": "kwin",
+        "name": "Window Quick Tile Left"
+      },
+      "summary": "Drag a window to an edge, or use the shortcut. Dragging to a corner quarters it, and holding Meta while dragging moves the window from anywhere in it."
     },
     {
       "id": "snipping-tool",
@@ -395,6 +1035,21 @@
       "summary": "Rectangle, window, whole screen, or a screen recording. The chord you already use works here too."
     },
     {
+      "id": "sound-settings",
+      "windows": "Sound settings",
+      "aliases": [
+        "volume mixer",
+        "sndvol",
+        "playback devices",
+        "microphone",
+        "speakers"
+      ],
+      "kde": "Audio",
+      "category": "Settings",
+      "desktop": "kcm_pulseaudio.desktop",
+      "summary": "Per-application volumes, input and output devices. The speaker icon in the tray does the same job with fewer clicks."
+    },
+    {
       "id": "startup-apps",
       "windows": "Startup apps",
       "aliases": [
@@ -407,6 +1062,47 @@
       "category": "Settings",
       "desktop": "kcm_autostart.desktop",
       "summary": "What starts when you log in — applications, scripts and login shell files, all in one list you can add to."
+    },
+    {
+      "id": "sticky-notes",
+      "windows": "Sticky Notes",
+      "aliases": [
+        "notes",
+        "post-it"
+      ],
+      "kde": "Notes widget",
+      "category": "Apps",
+      "icon": "accessories-text-editor",
+      "summary": "Right-click the desktop or a panel, Add Widgets, then Notes. Widgets are the small applications Windows keeps trying to reinvent."
+    },
+    {
+      "id": "storage",
+      "windows": "Storage",
+      "aliases": [
+        "this pc",
+        "drive letters",
+        "removable drives",
+        "usb",
+        "mount"
+      ],
+      "kde": "Disks & Devices",
+      "category": "Settings",
+      "desktop": "kcm_disks.desktop",
+      "summary": "There are no drive letters. Internal disks are mounted into the file tree, and removable ones appear in Dolphin's Places when plugged in."
+    },
+    {
+      "id": "system-info",
+      "windows": "System Information",
+      "aliases": [
+        "msinfo32",
+        "about this pc",
+        "specs",
+        "Win+Pause"
+      ],
+      "kde": "About this System",
+      "category": "System",
+      "desktop": "kcm_about-distro.desktop",
+      "summary": "Which version of everything you are running, in one place, and the first thing anyone helping you will ask for."
     },
     {
       "id": "task-manager",
@@ -425,6 +1121,19 @@
       "summary": "The same job with more of it: processes, CPU, memory, disks and network, and a button to end anything that has stopped responding."
     },
     {
+      "id": "task-scheduler",
+      "windows": "Task Scheduler",
+      "aliases": [
+        "scheduled task",
+        "cron",
+        "run at time"
+      ],
+      "kde": "systemd timers",
+      "category": "System",
+      "icon": "clock",
+      "summary": "No graphical scheduler ships with the desktop. systemd timers are the modern way and cron the old one; both are text files and both are well documented."
+    },
+    {
       "id": "task-view",
       "windows": "Task View",
       "aliases": [
@@ -439,7 +1148,50 @@
         "component": "kwin",
         "name": "Overview"
       },
-      "summary": "Every window laid out at once, with your virtual desktops along the top and a search box. Virtual desktops are the same idea as on Windows and rather better supported."
+      "summary": "Every window laid out at once, with your virtual desktops along the top and a search box. Virtual desktops are the same idea as on Windows and rather better supported.",
+      "icon": "view-list-icons"
+    },
+    {
+      "id": "teams",
+      "windows": "Teams",
+      "aliases": [
+        "Zoom",
+        "Skype",
+        "video call",
+        "meeting"
+      ],
+      "kde": "The browser, or a Flatpak",
+      "category": "Internet",
+      "icon": "internet-web-browser",
+      "summary": "Teams and Zoom both work in the browser, and both have Linux builds in Discover. Meeting links open and work; screen sharing needs permission the first time."
+    },
+    {
+      "id": "themes",
+      "windows": "Themes",
+      "aliases": [
+        "dark mode",
+        "appearance",
+        "colours",
+        "light mode"
+      ],
+      "kde": "Global Theme",
+      "category": "Settings",
+      "desktop": "kcm_lookandfeel.desktop",
+      "summary": "Dark mode is a Global Theme here, and it changes the whole desktop at once rather than application by application."
+    },
+    {
+      "id": "touchpad",
+      "windows": "Touchpad",
+      "aliases": [
+        "trackpad",
+        "two finger scroll",
+        "tap to click",
+        "precision touchpad"
+      ],
+      "kde": "Touchpad",
+      "category": "Settings",
+      "desktop": "kcm_touchpad.desktop",
+      "summary": "Tap to click, natural scrolling and gestures. Gestures are configurable rather than fixed."
     },
     {
       "id": "user-accounts",
@@ -454,6 +1206,33 @@
       "category": "Settings",
       "desktop": "kcm_users.desktop",
       "summary": "Add a user, change a password or a picture, and decide who may administer the machine."
+    },
+    {
+      "id": "virtual-desktops",
+      "windows": "Virtual desktops",
+      "aliases": [
+        "Win+Ctrl+D",
+        "multiple desktops",
+        "add desktop",
+        "workspaces"
+      ],
+      "kde": "Virtual Desktops",
+      "category": "Settings",
+      "desktop": "kcm_kwin_virtualdesktops.desktop",
+      "summary": "Add as many as you like, name them, and put them in a grid. They are a first-class part of the desktop here rather than an afterthought."
+    },
+    {
+      "id": "scanner",
+      "windows": "Windows Fax and Scan",
+      "aliases": [
+        "scan",
+        "scanner",
+        "document scan"
+      ],
+      "kde": "Skanpage",
+      "category": "Apps",
+      "desktop": "org.kde.skanpage.desktop",
+      "summary": "Multi-page scanning to PDF. Most network scanners are found without a driver."
     },
     {
       "id": "windows-key",
@@ -471,7 +1250,8 @@
       "action": {
         "component": "plasmashell",
         "name": "activate application launcher"
-      }
+      },
+      "icon": "input-keyboard"
     },
     {
       "id": "media-player",
@@ -514,6 +1294,19 @@
       "category": "System",
       "desktop": "org.kde.discover.desktop",
       "summary": "Updates for the whole machine at once, applications and system together. Most of them apply without a restart, and none of them choose their own moment to reboot you."
+    },
+    {
+      "id": "update-settings",
+      "windows": "Windows Update settings",
+      "aliases": [
+        "automatic updates",
+        "active hours",
+        "pause updates"
+      ],
+      "kde": "Software Update",
+      "category": "Settings",
+      "desktop": "kcm_updates.desktop",
+      "summary": "How often it checks and whether it applies updates on its own. Nothing here will restart the machine to finish."
     }
   ]
 }

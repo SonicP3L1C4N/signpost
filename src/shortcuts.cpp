@@ -89,7 +89,15 @@ QString Shortcuts::forEntry(const Entry &entry)
     if (!entry.actionName.isEmpty()) {
         return forAction(entry.actionComponent, entry.actionName);
     }
-    const QString source = entry.shortcutDesktopId.isEmpty() ? entry.desktopId
-                                                             : entry.shortcutDesktopId;
-    return forLaunch(source);
+    if (!entry.shortcutDesktopId.isEmpty()) {
+        return forLaunch(entry.shortcutDesktopId);
+    }
+    // Whichever candidate is installed is the one whose shortcut applies.
+    for (const QString &candidate : entry.desktopIds) {
+        const QString shortcut = forLaunch(candidate);
+        if (!shortcut.isEmpty()) {
+            return shortcut;
+        }
+    }
+    return {};
 }
