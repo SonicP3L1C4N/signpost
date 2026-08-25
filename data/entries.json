@@ -932,6 +932,7 @@
       "category": "Settings",
       "desktop": "kcm_kscreen.desktop",
       "shortcutDesktop": "org.kde.kscreen.desktop",
+      "shortcutAction": "ShowOSD",
       "summary": "Arrange, mirror or turn off screens, and set which one is primary. The chord is the one you already press."
     },
     {

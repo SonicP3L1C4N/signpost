@@ -22,6 +22,20 @@ namespace Shortcuts
 /** The launch shortcut for a .desktop id, or "" when it has none. */
 QString forLaunch(const QString &desktopId);
 
+/**
+ * A named action of a service -- "ShowOSD" of `org.kde.kscreen.desktop` -- or
+ * the launch shortcut when the name is empty.
+ *
+ * Not every shortcut a service ships starts the service. kscreen has no launch
+ * shortcut at all; Meta+P belongs to its Switch Display action and lives in a
+ * `[Desktop Action ShowOSD]` group, which is why an entry can say which action
+ * it means rather than getting nothing.
+ *
+ * A binding the user has taken away is an answer, not a gap: where their file
+ * carries the action at all, it is what this returns, empty or not.
+ */
+QString forService(const QString &desktopId, const QString &actionName);
+
 /** A non-launch action, e.g. component "kwin", name "Show Desktop". */
 QString forAction(const QString &component, const QString &name);
 

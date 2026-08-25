@@ -8,6 +8,20 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
 
 ## Unreleased
 
+- **A shortcut the user has taken away is no longer filled back in from the
+  default the application shipped.** `kglobalshortcutsrc` carries the binding
+  as `none` — or as nothing at all — once it is unbound, and the lookup read
+  that as "this file says nothing" and went to the shipped `X-KDE-Shortcuts`
+  for an answer. The card then printed a chord that does nothing, which is
+  precisely the failure reading the machine is supposed to prevent. Where the
+  user's file carries the action at all, it is the answer, empty or not.
+- **An action's shortcut is found where the action keeps it.** Not every
+  shortcut an application ships starts it: Win+P is kscreen's Switch Display,
+  in a `[Desktop Action ShowOSD]` group, and kscreen has no launch shortcut,
+  so the entry whose whole summary is "the chord is the one you already press"
+  showed no chord. Entries can now name the action with `shortcutAction`, and
+  a rebinding of it in `kglobalshortcutsrc` is read the same way as any other.
+
 - `signpost --check` reports what a copy can actually see — versions, entry
   count, and how many answers resolved to an installed application — without
   needing a screen. Packaging makes that question hard to answer by looking.

@@ -32,6 +32,7 @@ struct Entry {
     QStringList desktopIds;     //< candidates; the first installed one wins
     QString iconName;           //< overrides the application's own icon
     QString shortcutDesktopId;  //< where its launch shortcut is defined
+    QString shortcutActionName; //< a named action of that service, not its launch
     QString actionComponent;    //< kglobalshortcutsrc group, for non-launch actions
     QString actionName;
 };

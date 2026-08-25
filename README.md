@@ -235,6 +235,13 @@ Desktop"}` — `icon` names a theme icon, since every card shows one, and
 `shortcutDesktop` covers the few whose shortcut is defined under a different id
 from the one that launches.
 
+Some of those ship no launch shortcut at all: what you press for Win+P is
+kscreen's Switch Display action, in a `[Desktop Action ShowOSD]` group of its
+own, and kscreen has nothing bound for starting it. `shortcutAction` names the
+action alongside `shortcutDesktop` — `"shortcutAction": "ShowOSD"` — because
+guessing which of an application's actions the card meant is how a chip ends up
+answering a question nobody asked.
+
 Three rules for a new entry:
 
 1. **Use the Windows word.** The entry is found by what the reader already

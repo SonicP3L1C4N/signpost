@@ -16,6 +16,25 @@ bool looksLikeAChord(const QString &candidate)
 {
     return candidate.contains(QLatin1Char('+'));
 }
+
+/** What kglobalaccel calls starting the application itself. */
+QString launchAction()
+{
+    return QStringLiteral("_launch");
+}
+
+/**
+ * Where a service's shipped default for an action lives.
+ *
+ * Starting the application is `[Desktop Entry]`; everything else is a
+ * `[Desktop Action Name]` group of its own, which is the freedesktop layout
+ * and not a KDE invention.
+ */
+QString groupFor(const QString &action)
+{
+    return action == launchAction() ? QStringLiteral("Desktop Entry")
+                                    : QStringLiteral("Desktop Action ") + action;
+}
 }
 
 QString Shortcuts::fromGlobalShortcutsValue(const QString &value)
@@ -46,19 +65,25 @@ QString Shortcuts::fromDesktopShortcutsValue(const QString &value)
     return {};
 }
 
-QString Shortcuts::forLaunch(const QString &desktopId)
+QString Shortcuts::forService(const QString &desktopId, const QString &actionName)
 {
     if (desktopId.isEmpty()) {
         return {};
     }
+    const QString action = actionName.isEmpty() ? launchAction() : actionName;
 
     KConfig config(QStringLiteral("kglobalshortcutsrc"), KConfig::NoGlobals);
     const KConfigGroup services = config.group(QStringLiteral("services"));
     if (services.hasGroup(desktopId)) {
-        const QString changed = fromGlobalShortcutsValue(
-            services.group(desktopId).readEntry(QStringLiteral("_launch"), QString()));
-        if (!changed.isEmpty()) {
-            return changed;
+        const KConfigGroup service = services.group(desktopId);
+        // Present is the answer, whatever it says. kglobalaccel writes the key
+        // back as "none,..." -- or as nothing at all -- when the binding is
+        // taken away, so a key that is there and says nothing means the user
+        // unbound it. Reading on to the shipped default in that case would put
+        // a chord on the card that this machine no longer honours, which is
+        // the one thing a phrasebook must not do.
+        if (service.hasKey(action)) {
+            return fromGlobalShortcutsValue(service.readEntry(action, QString()));
         }
     }
 
@@ -70,8 +95,17 @@ QString Shortcuts::forLaunch(const QString &desktopId)
     }
 
     KConfig desktopFile(shipped, KConfig::SimpleConfig);
-    return fromDesktopShortcutsValue(desktopFile.group(QStringLiteral("Desktop Entry"))
+    const QString group = groupFor(action);
+    if (!desktopFile.hasGroup(group)) {
+        return {};
+    }
+    return fromDesktopShortcutsValue(desktopFile.group(group)
                                          .readEntry(QStringLiteral("X-KDE-Shortcuts"), QString()));
+}
+
+QString Shortcuts::forLaunch(const QString &desktopId)
+{
+    return forService(desktopId, QString());
 }
 
 QString Shortcuts::forAction(const QString &component, const QString &name)
@@ -90,7 +124,7 @@ QString Shortcuts::forEntry(const Entry &entry)
         return forAction(entry.actionComponent, entry.actionName);
     }
     if (!entry.shortcutDesktopId.isEmpty()) {
-        return forLaunch(entry.shortcutDesktopId);
+        return forService(entry.shortcutDesktopId, entry.shortcutActionName);
     }
     // Whichever candidate is installed is the one whose shortcut applies.
     for (const QString &candidate : entry.desktopIds) {

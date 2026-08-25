@@ -54,6 +54,7 @@ Entry readEntry(const QJsonObject &object)
     }
     entry.iconName = object.value(QLatin1String("icon")).toString();
     entry.shortcutDesktopId = object.value(QLatin1String("shortcutDesktop")).toString();
+    entry.shortcutActionName = object.value(QLatin1String("shortcutAction")).toString();
 
     const QJsonArray aliases = object.value(QLatin1String("aliases")).toArray();
     for (const QJsonValue &alias : aliases) {
