@@ -3,8 +3,13 @@ SPDX-FileCopyrightText: 2026 Gary Bissett <gary.bissett@gmail.com>
 
 SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 -->
-
-# Signpost
+<h1>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="icons/64-apps-io.github.sonicp3l1c4n.signpost.svg">
+    <img src="icons/64-apps-io.github.sonicp3l1c4n.signpost.svg" alt="" width="32">
+  </picture>
+  Signpost
+</h1>
 
 <img src="icons/sc-apps-signpost.svg" width="96" align="right" alt="">
 
